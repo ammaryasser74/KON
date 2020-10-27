@@ -1,44 +1,49 @@
 <div class="login-container">
-  <div class="row login">
-      <form [formGroup]="form">
-       
-              <div class="col-12">
-              <div class="form-group" >
-                  <input type="text" class="form-control" placeholder="رقم الجـــوال" formControlName="LoginField">
-                  <div class="form-control-feedback">
-                      <i class="icon-user text-muted colorIcon"></i>
-                  </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group" >
-                  <input type="password" class="form-control" placeholder="كلمةالمرور" name="Password" formControlName="Password">
-                  <div class="form-control-feedback">
-                      <i class="icon-lock2 text-muted colorIcon"></i>
-                  </div>
-              </div>
-            </div>
-            
-            <div class="col-12">
-              <div class="form-group">
-                  <button (click)="login()" class="btn btn-primary fullwidth"> تســــــجيل الدخول
-                  </button>
-              </div>
-            </div>
 
-           
-            <div class="col-12" >
-             
-                   <label class="has-danger  text-center" *ngIf="error">بيانات الدخول غير صحيحة</label>
-              
-              </div>
-              <div class="col-12 text-center">
-                <a href="https://start-it.online/" target="_blank">start-it.online
-                </a>
-                  جميع الحقوق محفوظه &copy; 2019
-              </div>
-      </form>
+
+
+  <div class="row login">
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <p class="has-danger  text-center errorMsg">
+        <span *ngIf="error">بيانات الدخول غير صحيحة</span>
+      </p>
+
+      <div class="col-12">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="رقم الجـــوال" formControlName="LoginField">
+          <div class="form-control-feedback">
+            <i class="icon-user text-muted colorIcon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="كلمةالمرور" name="Password"
+            formControlName="Password">
+          <div class="form-control-feedback">
+            <i class="icon-lock2 text-muted colorIcon"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-group">
+
+
+          <button type="submit" [disabled]="loading" class="btn btn-primary fullwidth">
+            تســــــجيل الدخول
+            <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12 text-center">
+        <a href="https://start-it.online/" target="_blank">start-it.online
+        </a>
+        جميع الحقوق محفوظه &copy; 2019
+      </div>
+    </form>
   </div>
 
 </div>
-
