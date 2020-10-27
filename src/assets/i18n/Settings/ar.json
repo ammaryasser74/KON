@@ -1,0 +1,97 @@
+{
+
+    "share": {
+        "required": "حقل مطلوب",
+        "search": "بحث...",
+        "show": "عرض",
+        "actions": "إجراءات",
+        "delete": "حذف",
+        "edit": "تعديل ",
+        "pageNo": "رقم الصفحة",
+        "total": "مجموع النتائج",
+        "Procedures": "اجراءات",
+        "PageNumber": "صفحة رقم",
+        "TotalResults": "مجموع",
+        "WebSite": "الموقع الاكتروني",
+        "Add": "اضافة",
+        "Close": "اغلاق",
+        "Edit": "تعديل",
+        "upload": "تحميل",
+        "Save": "حفظ",
+        "New": "جديـد"
+    },
+    "city": {
+        "ar_name": "الاسم العربي",
+        "en_name": "الاسم  الانجليزي",
+        "add-city": "اضافة مدينة",
+        "delivery_fee": "مصاريف التوصيل "
+    },
+    "job": {
+        "job":"الوظائف",
+        "NameArabic": "الاسم العربي",
+        "NameEnglish": "الاسم  الانجليزي",
+        "add-job": "اضافة وظيفة",
+        "update-job": " تعديل وظيفة ",
+        "active":"نشط"
+    },
+    "country": {
+        "country":"الدول",
+        "NameArabic": "الاسم العربي",
+        "NameEnglish": "الاسم  الانجليزي",
+        "add": "اضافة دوله",
+        "update": " تعديل دولة ",
+        "active":"نشط"
+    },
+    "partner": {
+        "partner":"الشركاء",
+        "NameArabic": "الاسم العربي",
+        "NameEnglish": "الاسم  الانجليزي",
+        "add": "اضافة شريك",
+        "update": " تعديل شريك ",
+        "active":"نشط"
+    },
+    "story": {
+        "story":"عنا",
+        "NameArabic": "الاسم العربي",
+        "NameEnglish": "الاسم  الانجليزي",
+        "DescArabic":"الوصف العربي ",
+        "DescEnglish":" الوصف الانجليزي ",
+        "add": " الاضافة ",
+        "update": " التعديل "
+
+      
+    },
+
+    "FAQ": {
+        "FAQ":"ألاسئله والاجابات",
+ 
+        "add": " الاضافة ",
+        "update": " التعديل ",
+
+        "question_arabic":"السؤال العربي",
+        "answer_arabic": "الاجابة  العربي",
+        "question_english":"السؤال الانجليزي",
+        "answer_english":"الاجابة بالانجليزية"
+    },
+    "contactus": {
+        "Name": "الاسم",
+        "Email": "البريد الالكتروني",
+        "Mobile": "الهاتف",
+        "Message": "الرساله",
+        "msg_type": "نوع الرساله"
+    },
+
+    "settings-qoot": {
+        "title": "الاسم",
+        "facebook": "الفيس بوك",
+        "twitter": "تويتر",
+        "instagram": "الانستجرام",
+        "phone": "الهاتف",
+        "contactus_email": "ايميل التواصل",
+        "email": "البريد الالكتروني ",
+        "password": "كلمة المرور للبريد",
+        "qoot_percentage_weeklyDeal": "نسبه قوت من الاشتراك",
+        "qoot_percentage_dish": "نسبه قوت من الطلبات",
+        "auto_reject_time":"وقت رفض الطلب"
+    }
+}

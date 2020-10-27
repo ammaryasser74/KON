@@ -1,0 +1,125 @@
+{
+
+    "category-report": {
+        "allCategories": "جميع الفئات",
+        "maxUse": "الاكثر استخداما ",
+        "minUse": "الاقل استخداما ",
+        "kitchen_name": "اسم المطبخ",
+        "kitchen_owner_name": "صاحب المطبخ",
+        "arname": "اسم الطبق العربي",
+        "enname": "اسم الطبق الانجليزي",
+        "price": "السعر",
+        "status": "الحاله",
+        "category":"الفئه"
+
+    },
+    "kitche-report": {
+        "allChiefs": "جميع المطابخ ",
+        "pendingChiefs": "انتظار الموافقه ",
+        "approvedChiefs": "مطابخ نشطة ",
+        "rejectedChiefs": "مطابخ مرفوضة ",
+        "kitchen_name": "اسم المطبخ",
+        "kitchen_owner_name": "صاحب المطبخ",
+        "status": "الحاله",
+        "email": "البريد الالكتروني",
+        "phone": "رقم الهاتف",
+        "maaroof": "رقم تعريفي",
+        "views":"مشاهدات"
+
+    },
+    "share": {
+        "category": " الفئة",
+        "from": "من تاريخ",
+        "to": "الي تاريخ",
+        "city": "المدينة",
+        "kitchen": " المطبخ",
+        "show": "عرض",
+        "search": "بحث ..",
+        "actions": "اجراءات",
+        "pageNo": "رقم الصفحة",
+        "total": "مجموع النتائج",
+        "Procedures": "اجراءات",
+        "PageNumber": "صفحة رقم",
+        "TotalResults": "مجموع",
+        "person": "فرد",
+        "Update": "تعديل",
+        "order": "اطلـب",
+        "In": "في",
+        "Close": "اغلاق",
+        "Edit": "تعديل",
+        "upload": "تحميل",
+        "Save": "حفظ"
+    },
+    "dish-report": {
+        "AllDishes": "جميع الاطباق",
+        "ApprovedDishes": "اطباق نشطة",
+        "InApprovedDishes": "اطباق غير نشطه"
+    },
+    "customer-report": {
+        "allCustomers": "جميع الزبائن ",
+        "blockedCustomers": " زبائن مرفوضه",
+        "unblockedCustomers": "زبائن نشطه ",
+        "phone": "رقم الهاتف",
+        "email": "البريد الالكتروني",
+        "firstname": "الاسم الاول",
+        "lastname": "الاسم الاخير"
+    },
+    "order-report": {
+        "delivered": "مسلمه",
+        "autoRejected": "مرفوضه",
+        "all": "جميع الطلبات ",
+        "code": "رقم الطلب",
+        "kitchen_name": "اسم المطبخ",
+        "NetTotal": "السعر",
+        "status": "الحاله",
+        "date": "تاريخ الطلب",
+        "note": "ملاحظات",
+        "pending": "منتظره",
+        "confirmed": "تاكيد",
+        "completed": "مكتمله",
+        "ontheway": "في الطريق",
+        "canceledByChief": "مرفوضه",
+        "phone": "رقم الهاتف",
+        "firstname": "الاسم الاول",
+        "order-details": "تفاصيل الطلب",
+        "Net": "الصافي",
+        "total": "الاجمالي",
+        "delivary-fees": "مصاريف التوصيل"
+
+    },
+    "transaction": {
+        "value": "القيمة",
+        "download": "تحميل صيغه الملف",
+        "kitchen_name": "اسم المطبخ",
+        "kitchen_owner_name": "صاحب المطبخ",
+        "status": "الحاله",
+        "email": "البريد الالكتروني",
+        "phone": "رقم الهاتف",
+        "maaroof": "رقم تعريفي",
+        "savefile": "حفظ الملف"
+    },
+    "qoot-income": {
+        "code":"رقم الطلب",
+        "date":"تاريخ الطلب",
+        "city":"المدينة",
+        "qoot-income": "دخل قوت",
+        "kitchen_name": "اسم المطبخ",
+        "kitchen_owner_name": "صاحب المطبخ",
+        "delivery_fee": "مصاريف التوصيل",
+        "total_income": "اجمالي الدخل",
+        "chiefs_income": "دخل المطبخ",
+        "NetTotal":"قيمة الطلب",
+        "revenu":"ربح المطبخ",
+        "recieved_amount":"المبلغ المستلم",
+        "qoot_balance":"المبلغ المتبقي"
+
+    },
+"visitor":{
+"Date":"التاريخ",
+"novisitor":"عدد الزوار",
+"allVisitors":"جميع الزوار ",
+"allVisitorsChief":"زوار المطبخ  ",
+"allVisitorsThisMonth":"زوار هذا الشهر  "
+}
+
+}

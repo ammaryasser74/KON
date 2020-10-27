@@ -1,0 +1,64 @@
+<div>
+  <div class="modal-header">
+    <h6 *ngIf="!Data"> {{'coach.add-time'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+        <div class="row">
+       
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label class="label"> {{'coach.Day' | translate }}
+            </label>
+            <ng-select placeholder="{{'coach.Day' | translate }}" [multiple]="false" formControlName="day_id">
+                <ng-option *ngFor="let row of Days" [value]="row.id" [disabled]="row.disabled">{{languageService.getLanguageOrDefault()=='ar' ? row.ar_name :row.en_name}}</ng-option>
+            </ng-select>
+            <span class="text-danger" *ngIf="form.get('day_id').invalid && form.get('day_id').dirty">{{'share.required' |translate}}</span>
+          </div>
+
+    
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.time_from' | translate }}
+              </label>
+
+              <input formControlName="time_from" nbInput fullWidth [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4"  [ngClass]="{'has-danger':form.get('time_from').invalid && form.get('time_from').dirty}">
+               <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+              <span class="has-danger"
+                *ngIf="form.get('time_from').invalid && form.get('time_from').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+
+          
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.time_to' | translate }}
+              </label>
+              <input formControlName="time_to" nbInput fullWidth [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5"  [ngClass]="{'has-danger':form.get('time_to').invalid && form.get('time_to').dirty}">
+               <owl-date-time [pickerType]="'timer'" #dt5></owl-date-time>
+              <span class="has-danger"
+                *ngIf="form.get('time_to').invalid && form.get('time_to').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-t-35">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" class="btn closeBtn fullwidth" (click)="myModel.hide()"
+                >{{'share.Close'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+      </form>
+    </nb-card-body>
+  </div>
+</div>

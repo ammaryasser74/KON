@@ -1,0 +1,171 @@
+<div>
+  <div class="modal-header">
+    <h6 *ngIf="!Data"> {{'coach.add'|translate}}</h6>
+    <h6 *ngIf="Data"> {{'coach.update'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.firstname' | translate }}
+              </label>
+              <input formControlName="first_name"
+                [ngClass]="{'has-danger':form.get('first_name').invalid && form.get('first_name').dirty}" type="text"
+                nbInput fullWidth>
+              <span class="has-danger"
+                *ngIf="form.get('first_name').invalid && form.get('first_name').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.lastname' | translate }}
+
+              </label>
+              <input formControlName="last_name" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('last_name').invalid && form.get('last_name').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('last_name').invalid && form.get('last_name').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.address' | translate }}
+
+              </label>
+              <input formControlName="address" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('address').invalid && form.get('address').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('address').invalid && form.get('address').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.email' | translate }}
+
+              </label>
+              <input formControlName="email" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('email').invalid && form.get('email').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('email').invalid && form.get('email').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.phone' | translate }}
+
+              </label>
+              <input formControlName="phone" type="tel" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('phone').invalid && form.get('phone').dirty}">
+              <span class="has-danger" *ngIf="form.get('phone').invalid && form.get('phone').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.password' | translate }}
+              </label>
+              <input formControlName="password" type="password" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('password').invalid && form.get('password').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('password').invalid && form.get('password').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label class="label"> {{'coach.country' | translate }}
+            </label>
+            <ng-select placeholder="{{'coach.country'|translate}}" [multiple]="false" formControlName="country_id">
+              <ng-option *ngFor="let row of country" [value]="row.id" [disabled]="row.disabled">
+                {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+            </ng-select>
+            <span class="text-danger"
+              *ngIf="form.get('country_id').invalid && form.get('country_id').dirty">{{'share.required' |translate}}</span>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label class="label"> {{'coach.city' | translate }}
+            </label>
+            <ng-select placeholder="{{'coach.city'|translate}}" [multiple]="false" formControlName="city_id">
+              <ng-option *ngFor="let row of cities" [value]="row.id" [disabled]="row.disabled">
+                {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+            </ng-select>
+            <span class="text-danger"
+              *ngIf="form.get('city_id').invalid && form.get('city_id').dirty">{{'share.required' |translate}}</span>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label class="label"> {{'coach.martial_status' | translate }}
+            </label>
+            <ng-select placeholder="{{'coach.martial_status'|translate}}" [multiple]="false"
+              formControlName="martial_status">
+              <ng-option *ngFor="let row of martial_status" [value]="row.value" [disabled]="row.disabled">{{row.name}}
+              </ng-option>
+            </ng-select>
+            <span class="text-danger"
+              *ngIf="form.get('martial_status').invalid && form.get('martial_status').dirty">{{'share.required' |translate}}</span>
+          </div>
+        </div>
+
+        <div class="row m-t-20">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12" *ngIf="Data">
+            <div class="form-group">
+              <label class="label"> {{'coach.age' | translate }}
+              </label>
+              <input formControlName="age" type="number" nbInput fullWidth readonly
+                [ngClass]="{'has-danger':form.get('age').invalid && form.get('password').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('age').invalid && form.get('age').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">{{'client.birthdate'|translate}}</label>
+              <input nbInput fullWidth [max]="today" placeholder="{{'client.birthdate'|translate}}" [ngClass]="{'has-danger':form.get('birthdate').invalid && form.get('birthdate').dirty}" formControlName="birthdate" type="text" [owlDateTime]="dt2" placeholder="Date Time" [owlDateTimeTrigger]="dt2">
+              <owl-date-time #dt2  [pickerType]="'calendar'" ></owl-date-time>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <nb-radio-group formControlName="gender" name="gender">
+              <nb-radio value="Female">
+                Female
+              </nb-radio>
+              <nb-radio value="Male">
+                Male
+              </nb-radio>
+            </nb-radio-group>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+          <label class="label">
+            {{'coach.bio' | translate }}
+          </label>
+          <textarea rows="3" nbInput fullWidth shape="round" formControlName="bio" placeholder=" {{'coach.bio' | translate }}"></textarea>
+        </div>
+        </div>
+     
+
+        <div class="row m-t-10">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" class="btn closeBtn fullwidth" (click)="myModel.hide()"
+                >{{'share.Close'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+      </form>
+    </nb-card-body>
+  </div>
+</div>

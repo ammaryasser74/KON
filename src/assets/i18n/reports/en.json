@@ -1,0 +1,126 @@
+{
+
+    "category-report": {
+        "allCategories": "All category",
+        "maxUse": "Max Use",
+        "minUse": "Min nUse",
+        "kitchen_name": "kitchen name",
+        "kitchen_owner_name": "kitchen owner name",
+        "arname": "Arabic Name",
+        "enname": "English Name",
+        "price": "Price",
+        "status": "status",
+        "Category":"category"
+
+    },
+    "kitche-report": {
+        "allChiefs": "All Chiefs",
+        "pendingChiefs": "Pending Chiefs",
+        "approvedChiefs": "Approved Chiefs",
+        "rejectedChiefs": "Rejected Chiefs",
+        "kitchen_name": "kitchen name",
+        "kitchen_owner_name": "kitchen owner name",
+        "status": "Status",
+        "email": "Email",
+        "phone": " Phone",
+        "maaroof": "maroof",
+        "views":"views"
+
+
+    },
+    "share": {
+        "category": "Category ",
+        "from": "From",
+        "to": "To Date",
+        "city": "City",
+        "kitchen": "Kitchen ",
+        "show": "show",
+        "search": "search ..",
+        "actions": "actions",
+        "pageNo": "PageNo",
+        "total": "Total Results",
+        "Procedures": "Procedures",
+        "PageNumber": "Page Number",
+        "TotalResults": "Total Results",
+        "share": "Share",
+        "person": "Person",
+        "Update": "Update",
+        "order": "Order",
+        "In": "In",
+        "Close": "Close",
+        "Edit": "Edit",
+        "upload": "upload",
+        "Save": "Save"
+    },
+    "dish-report": {
+        "AllDishes": "All Dishes",
+        "ApprovedDishes": "Approved Dishes",
+        "InApprovedDishes": "In Approved Dishes"
+    },
+    "customer-report": {
+        "allCustomers": "All Customers",
+        "blockedCustomers": "Blocked Customers",
+        "unblockedCustomers": "unblocked Customers",
+        "phone": " phone",
+        "email": "email",
+        "firstname": "First Name",
+        "lastname": "Last Name"
+    },
+    "order-report": {
+        "delivered": "delivered",
+        "autoRejected": "autoRejected",
+        "all": "All Order",
+        "code": "Code",
+        "kitchen_name": "Kitchen Name",
+        "NetTotal": "Net Total",
+        "status": "Status",
+        "date": "Order Date",
+        "note": "Notes",
+        "pending": "pending",
+        "confirmed": "Confirmed",
+        "completed": "Completed",
+        "ontheway": "Ontheway",
+        "canceledByChief": "canceledByChief",
+        "phone": "phone",
+        "firstname": "First Name",
+        "order-details": "Order Details",
+        "Net": "Net Total",
+        "total": "Total",
+        "delivary-fees": "Delivary Fees"
+
+    },
+    "transaction": {
+        "value": "value",
+        "download": " download templet ",
+        "kitchen_name": "kitchen name",
+        "kitchen_owner_name": "kitchen owner name",
+        "status": "Status",
+        "email": "Email",
+        "phone": " Phone",
+        "maaroof": "maroof",
+        "savefile": "Save File"
+    },
+    "qoot-income": {
+        "code":"Code",
+        "date":" Date",
+        "city":"City",
+        "qoot-income": " qoot income",
+        "kitchen_name": "kitchen name",
+        "kitchen_owner_name": " kitchen owner name",
+        "delivery_fee": "delivery_fee",
+        "total_income": "Total_income",
+        "chiefs_income": "Chiefs Income ",
+        "NetTotal":"order value",
+        "revenu":"Revenu",
+        "recieved_amount":"Recieved Amount",
+        "qoot_balance":"Qoot Balance"
+    }
+    ,
+"visitor":{
+"Date":"Date",
+"novisitor":"No of Visitor",
+"allVisitors":"All Visitors",
+"allVisitorsChief":"All Visitors Chief",
+"allVisitorsThisMonth":"All Visitors ThisMonth"
+}
+}

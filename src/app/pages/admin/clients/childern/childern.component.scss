@@ -1,0 +1,43 @@
+.m-b-10{
+    margin-bottom: 10px;
+}
+.backBtn{
+    float: left;
+    color: #8F9CB3;
+    border: 1px solid #8F9CB3;
+    background:#8F9CB3 ;
+    padding: 0rem 0.9rem;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+    text-align: center;
+    .nb-theme-default nb-icon{
+        line-height: 0 !important;
+    }
+}
+.addChild{
+    width:auto;
+    float: right;
+    background-color: #8F9CB3 !important;
+    color:   #ffffff!important;
+    border-color: #8F9CB3  !important;
+}
+.btn{
+    border: 1px solid #888888 !important;
+    border-radius: 10px !important;
+    color: #FFF;
+    padding: 0.2rem 0.4rem !important;
+    background: #888;
+    display: inline-block;
+   }
+   .save{
+    background-color: #00A9F4  !important;
+    color: #fff !important;
+    border-radius: 5px !important;
+    border: 1px solid #00A9F4 !important;
+    padding: 0.5rem 4rem !important;
+   }
+   .save:hover{
+    background-color: rgba(51, 103, 255,0.8) !important;
+    color: #fff !important;
+    border-color: rgba(51, 103, 255,0.8);
+   }

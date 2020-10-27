@@ -1,0 +1,55 @@
+<div >
+  <div class="modal-header">
+      <h6 *ngIf="!Data">{{'FAQ.add'|translate}}</h6>
+      <h6 *ngIf="Data">{{'FAQ.update'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName" class="label">{{'FAQ.question_arabic'|translate}}</label>
+            <textarea type="text" [ngClass]="{'has-danger':form.get('question_arabic').invalid && form.get('question_arabic').dirty}" formControlName="question_arabic" nbInput fullWidth  placeholder="{{'FAQ.NameArabic'|translate}}" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName" class="label">{{'FAQ.answer_arabic'|translate}}</label>
+            <textarea type="text" [ngClass]="{'has-danger':form.get('answer_arabic').invalid && form.get('answer_arabic').dirty}" formControlName="answer_arabic" nbInput fullWidth  placeholder="{{'FAQ.NameEnglish'|translate}}" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group" >
+            <label for="inputEmail" class="label">{{'FAQ.question_english'|translate}}</label>
+            <textarea type="text" [ngClass]="{'has-danger':form.get('question_english').invalid && form.get('question_english').dirty}" formControlName="question_english" nbInput fullWidth  placeholder="{{'FAQ.DescArabic'|translate}}" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputWebsite" class="label">{{'FAQ.answer_english'|translate}}</label>
+            <textarea type="text" [ngClass]="{'has-danger':form.get('answer_english').invalid && form.get('answer_english').dirty}" formControlName="answer_english" nbInput fullWidth  placeholder="{{'FAQ.DescEnglish'|translate}}" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" class="closeBtn" fullWidth (click)="myModel.hide()">{{'share.Close'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      
+      </form>
+    </nb-card-body>
+  </div>
+</div>

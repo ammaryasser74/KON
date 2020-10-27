@@ -1,0 +1,406 @@
+
+<div class="col-md-12 col-lg-12 m-b-10">
+  <button class="btn btn-danger margin-right-10 m-b-20" routerLink="/admin/coaches"
+    *ngIf="languageService.getLanguageOrDefault()=='ar'">
+    <nb-icon pack="ion" class="ion-arrow-right-c ng-star-inserted"></nb-icon>
+  </button>
+  <button class="btn btn-danger margin-right-10 m-b-20" routerLink="/admin/coaches"
+    *ngIf="languageService.getLanguageOrDefault()=='en'">
+    <nb-icon pack="ion" class="ion-arrow-left-c ng-star-inserted"></nb-icon>
+  </button>
+  <span class="coach-title">{{form.get('first_name').value}} {{form.get('last_name').value}}</span>
+
+</div>
+
+<div class="col-12 m-b-10">
+  
+  <nb-card size="large" style="height: 100%;margin-bottom: 10px;">
+    <nb-tabset fullWidth>
+     
+      <nb-tab tabTitle="{{'coach.basic-info' | translate }}" [nbSpinner]="loading" nbSpinnerStatus="info"
+        nbSpinnerSize="giant">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 m-b-12">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+                  <div class="form-group">
+                    <label class="label"> {{'coach.firstname' | translate }}
+                    </label>
+                    <input formControlName="first_name"
+                      [ngClass]="{'has-danger':form.get('first_name').invalid && form.get('first_name').dirty}"
+                      type="text" nbInput fullWidth>
+                    <span class="has-danger"
+                      *ngIf="form.get('first_name').invalid && form.get('first_name').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+                  <div class="form-group">
+                    <label class="label"> {{'coach.lastname' | translate }}
+
+                    </label>
+                    <input formControlName="last_name" type="text" nbInput fullWidth
+                      [ngClass]="{'has-danger':form.get('last_name').invalid && form.get('last_name').dirty}">
+                    <span class="has-danger"
+                      *ngIf="form.get('last_name').invalid && form.get('last_name').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+                  <div class="form-group">
+                    <label class="label"> {{'coach.email' | translate }}
+
+                    </label>
+                    <input formControlName="email" type="text" nbInput fullWidth
+                      [ngClass]="{'has-danger':form.get('email').invalid && form.get('email').dirty}">
+                    <span class="has-danger"
+                      *ngIf="form.get('email').invalid && form.get('email').dirty">{{ 'share.required' | translate }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+                  <div class="form-group">
+                    <label class="label"> {{'coach.phone' | translate }}
+
+                    </label>
+                    <input formControlName="phone" type="tel" nbInput fullWidth
+                      [ngClass]="{'has-danger':form.get('phone').invalid && form.get('phone').dirty}">
+                    <span class="has-danger"
+                      *ngIf="form.get('phone').invalid && form.get('phone').dirty">{{ 'share.required' | translate }}</span>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+                  <div class="form-group">
+                    <label class="label"> {{'coach.address' | translate }}
+
+                    </label>
+                    <input formControlName="address" type="text" nbInput fullWidth
+                      [ngClass]="{'has-danger':form.get('address').invalid && form.get('address').dirty}">
+                    <span class="has-danger"
+                      *ngIf="form.get('address').invalid && form.get('address').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
+                  <nb-radio-group formControlName="gender" name="gender">
+                    <nb-radio value="Female">
+                      Female
+                    </nb-radio>
+                    <nb-radio value="Male">
+                      Male
+                    </nb-radio>
+                  </nb-radio-group>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
+              <label tabindex="0" class="lbl-img res-img" for="my-file-3">
+                <a>
+                  <div class="avatar-img text-center mbmd" style="width: 100%;min-height: 160px;">
+                    <img src='assets/images/logo/upload.png' class="m-t-15" for="my-file-3" width="50%"
+                      *ngIf="avater==null">
+                    <img [src]='avater' for="my-file-3" for="my-file-3" width="100%" height="160px"
+                      *ngIf="avater!=null">
+
+                    <input class="input-file" id="my-file-3" type="file" style="display :none"
+                      accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)"
+                      class="select-profile-picture">
+                    <input class="input-file" id="my-file-3" type="file" style="display :none"
+                      (change)="onSelectFile($event)" class="select-profile-picture">
+                  </div>
+                </a>
+              </label>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
+              <label class="label"> {{'coach.country' | translate }}
+              </label>
+              <ng-select placeholder="{{'coach.country'|translate}}" [multiple]="false" formControlName="country_id">
+                <ng-option *ngFor="let row of country" [value]="row.id" [disabled]="row.disabled">
+                  {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+              </ng-select>
+              <span class="text-danger"
+                *ngIf="form.get('country_id').invalid && form.get('country_id').dirty">{{'share.required' |translate}}</span>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
+              <label class="label"> {{'coach.city' | translate }}
+              </label>
+              <ng-select placeholder="{{'coach.city'|translate}}" [multiple]="false" formControlName="city_id">
+                <ng-option *ngFor="let row of cities" [value]="row.id" [disabled]="row.disabled">
+                  {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+              </ng-select>
+              <span class="text-danger"
+                *ngIf="form.get('city_id').invalid && form.get('city_id').dirty">{{'share.required' |translate}}</span>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
+              <label class="label"> {{'coach.martial_status' | translate }}
+              </label>
+              <ng-select placeholder="{{'coach.martial_status'|translate}}" [multiple]="false"
+                formControlName="martial_status">
+                <ng-option *ngFor="let row of martial_status" [value]="row.value" [disabled]="row.disabled">{{row.name}}
+                </ng-option>
+              </ng-select>
+              <span class="text-danger"
+                *ngIf="form.get('martial_status').invalid && form.get('martial_status').dirty">{{'share.required' |translate}}</span>
+            </div>
+
+
+
+          </div>
+          <div class="row m-t-10">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label for="inputWebsite" class="label">{{'client.birthdate'|translate}}</label>
+                <input nbInput fullWidth placeholder="{{'client.birthdate'|translate}}"
+                  [ngClass]="{'has-danger':form.get('birthdate').invalid && form.get('birthdate').dirty}"
+                  formControlName="birthdate" type="text" [owlDateTime]="dt2" placeholder="Date Time"
+                  [owlDateTimeTrigger]="dt2">
+                <owl-date-time #dt2 [pickerType]="'calendar'"></owl-date-time>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label class="label"> {{'coach.age' | translate }}
+                </label>
+                <input formControlName="age" type="number" nbInput fullWidth readonly>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-textarea">
+            <label class="label"> {{'coach.bio' | translate }}
+            </label>
+            <textarea rows="3" nbInput fullWidth shape="round" formControlName="bio"
+              placeholder="{{'coach.bio' | translate }}"></textarea>
+          </div>
+          <div class="row m-t-10">
+            <div class="col-sm-9">
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </nb-tab>
+
+      <nb-tab tabTitle="{{'coach.sessions' | translate }}">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 margin-bottom-10">
+          <button class="fullwidth" status="info" nbButton (click)="addNew(null)">
+            <nb-icon icon="plus" pack="eva"></nb-icon>{{'coach.add-session'|translate}}
+          </button>
+        </div>
+        <ng2-smart-table [settings]="settingssession" [source]="sourceSession" (edit)="addNew($event)"
+          (delete)="onDeleteConfirmSession($event)">
+        </ng2-smart-table>
+      </nb-tab>
+
+      <nb-tab tabTitle="{{'coach.work' | translate }}">
+        <div class="accordion-container col-md-12 col-lg-12 col-xxxl-12">
+          <nb-accordion multi>
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                Expertise
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+
+                <div class="row">
+                  <div class="col-11"></div>
+                  <div class="col-1"> <button class="btn btn-primary" (click)="addNewExprience(null,'expertises')">
+                      <nb-icon pack="ion" class="ion-plus-round ng-star-inserted"></nb-icon>
+                    </button></div>
+                </div>
+                <div class="row m-t-10">
+                  <table class="table table-bordered table-framed text-center mb-3">
+                    <thead>
+                      <tr>
+                        <th>الاسم</th>
+                        <th>الوصف</th>
+                        <!-- <th> من تاريخ</th>
+                        <th>الي تارخ</th> -->
+                        <th colspan="2" rowspan="1">{{'share.actions' | translate}}</th>
+                      </tr>
+                    </thead>
+                 
+                    <tbody>
+                      <tr *ngFor="let row of sourceExpertises?.data">
+                        <td> {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</td>
+                        <td> {{languageService.getLanguageOrDefault()=='ar' ? row.description_arabic :row.description_english}}</td>
+                        <!-- <td>{{row.date_from }}</td>
+                        <td>{{row.date_to}}</td> -->
+                        <td>  <button class="btn btn-primary margin-right-10" (click)="addNewExprience(row,'expertises')">
+                          <nb-icon pack="ion" class="ion-edit ng-star-inserted"></nb-icon>
+                        </button></td>
+                        <td> <button class="btn btn-danger margin-right-10" (click)="onDeleteConfirmExprience(row)">
+                          <nb-icon pack="ion" class="ion-trash-a ng-star-inserted"></nb-icon>
+                        </button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                   </div>
+
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                Experience
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <div class="row">
+                  <div class="col-11"></div>
+                  <div class="col-1"> <button class="btn btn-primary" (click)="addNewExprience(null,'experiences')">
+                      <nb-icon pack="ion" class="ion-plus-round ng-star-inserted"></nb-icon>
+                    </button></div>
+                </div>
+                <div class="row m-t-10">
+                  <table class="table table-bordered table-framed text-center mb-3">
+                    <thead>
+                      <tr>
+                        <th>الاسم</th>
+                        <th>الوصف</th>
+                        <th> من تاريخ</th>
+                        <th>الي تارخ</th>
+                        <th colspan="2" rowspan="1">{{'share.actions' | translate}}</th>
+                      </tr>
+                    </thead>
+                 
+                    <tbody>
+                      <tr *ngFor="let row of sourceExperience?.data">
+                        <td> {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</td>
+                        <td> {{languageService.getLanguageOrDefault()=='ar' ? row.description_arabic :row.description_english}}</td>
+                        <td>{{row.date_from }}</td>
+                        <td> 
+                          <span *ngIf="row.date_to"> {{row.date_to}} </span>
+                          <span *ngIf="row.iscurrent==1">الي الان</span>
+                        </td>
+                        <td>  <button class="btn btn-primary margin-right-10" (click)="addNewExprience(row,'experiences')">
+                          <nb-icon pack="ion" class="ion-edit ng-star-inserted"></nb-icon>
+                        </button></td>
+                        <td> <button class="btn btn-danger margin-right-10" (click)="onDeleteConfirmExprience(row)">
+                          <nb-icon pack="ion" class="ion-trash-a ng-star-inserted"></nb-icon>
+                        </button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+
+            <nb-accordion-item>
+              <nb-accordion-item-header>
+                certification
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <div class="row">
+                  <div class="col-11"></div>
+                  <div class="col-1"> <button class="btn btn-primary" (click)="addNewExprience(null,'certification')">
+                      <nb-icon pack="ion" class="ion-plus-round ng-star-inserted"></nb-icon>
+                    </button></div>
+                </div>
+
+
+
+                <div class="row m-t-10">
+                  <table class="table table-bordered table-framed text-center mb-3">
+                    <thead>
+                      <tr>
+                        <th>الاسم</th>
+                        <th>الوصف</th>
+                        <th> التاريخ</th>
+                        <!-- <th>الي تارخ</th> -->
+                        <th colspan="2" rowspan="1">{{'share.actions' | translate}}</th>
+                      </tr>
+                    </thead>
+                 
+                    <tbody>
+                      <tr *ngFor="let row of sourceCertification?.data">
+                        <td> {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</td>
+                        <td> {{languageService.getLanguageOrDefault()=='ar' ? row.description_arabic :row.description_english}}</td>
+                        <td>{{row.date_from }}</td>
+                        <!-- <td> 
+                          <span *ngIf="row.date_to"> {{row.date_to}} </span>
+                          <span *ngIf="row.iscurrent==1">الي الان</span>
+                        </td> -->
+                        <td>  <button class="btn btn-primary margin-right-10" (click)="addNewExprience(row,'certification')">
+                          <nb-icon pack="ion" class="ion-edit ng-star-inserted"></nb-icon>
+                        </button></td>
+                        <td> <button class="btn btn-danger margin-right-10" (click)="onDeleteConfirmExprience(row)">
+                          <nb-icon pack="ion" class="ion-trash-a ng-star-inserted"></nb-icon>
+                        </button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+          
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="{{'coach.time-avaliable' | translate }}">
+        <div class="row">
+          <div class="col-11"></div>
+          <div class="col-1"><button class="btn btn-primary" (click)="addNewTime()">
+              <nb-icon pack="ion" class="ion-plus-round ng-star-inserted"></nb-icon>
+            </button></div>
+        </div>
+        <div class="accordion-container col-md-12 col-lg-12 col-xxxl-12 m-t-10">
+          <nb-accordion multi>
+            <nb-accordion-item *ngFor="let row of avaliableTime">
+
+              <nb-accordion-item-header>
+                {{row.ar_name}}
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <div class="row exp" *ngFor="let item of row.availabletimes">
+                  <div class="col-10">
+                    <div class="row">
+                      <div class="col-10 description m-t-10">
+                        <div class="row">
+                          <div class="col-3"> <span>{{item.time_from }}</span></div>
+                          <div class="col-1">إلي</div>
+                          <div class="col-3"><span>{{item.time_to }}</span></div>
+                        </div>
+                      </div>
+                      <div class="col-2">
+                        <button class="btn btn-danger margin-right-10" (click)="deleteTime(item.id)">
+                          <nb-icon pack="ion" class="ion-trash-a ng-star-inserted"></nb-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nb-accordion-item-body>
+
+            </nb-accordion-item>
+          </nb-accordion>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="{{'coach.event' | translate }}">
+        <ng2-smart-table [settings]="settingEvent" [source]="sourceEvent">
+        </ng2-smart-table>
+      </nb-tab>
+
+      <nb-tab tabTitle="{{'coach.reservation' | translate }}">
+        <ng2-smart-table [settings]="settingReservatin" [source]="sourcereservation">
+        </ng2-smart-table>
+      </nb-tab>
+
+    </nb-tabset>
+  </nb-card>
+</div>

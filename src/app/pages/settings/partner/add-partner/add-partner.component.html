@@ -1,0 +1,65 @@
+<div >
+  <div class="modal-header">
+      <h6 *ngIf="!Data">{{'partner.add'|translate}}</h6>
+      <h6 *ngIf="Data">{{'partner.update'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName" class="label">{{'partner.NameArabic'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}" formControlName="name_arabic" nbInput fullWidth  placeholder="{{'partner.NameArabic'|translate}}">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputLastName" class="label">{{'partner.NameEnglish'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}" formControlName="name_english" nbInput fullWidth  placeholder="{{'partner.NameEnglish'|translate}}">
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+          <label tabindex="0" class="lbl-img res-img" for="my-file-3">
+              <a>  
+              <div class="avatar-img text-center mbmd" style="width: 100%;min-height: 125px;">
+                  <img src='assets/images/logo/upload.png' class="m-t-15" for="my-file-3" width="50%"  *ngIf="img==null">
+                  <img [src]='img' for="my-file-3" for="my-file-3" width="100%" height="125px"
+                   *ngIf="img!=null">
+
+                      <input class="input-file" id="my-file-3" type="file" style="display :none" accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)" class="select-profile-picture">
+                      <input class="input-file" id="my-file-3" type="file" style="display :none" (change)="onSelectFile($event)" class="select-profile-picture">
+                  </div>
+              </a>
+      </label>
+      </div>
+      </div>
+   
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <nb-checkbox status="success" formControlName="isactive">{{'partner.active'|translate}} </nb-checkbox>
+          </div>
+        </div>
+      
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" class="closeBtn" fullWidth (click)="myModel.hide()">{{'share.Close'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      
+      </form>
+    </nb-card-body>
+  </div>
+</div>

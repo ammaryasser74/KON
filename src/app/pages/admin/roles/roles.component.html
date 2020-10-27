@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-10 margin-bottom-10">
+    <h3 style="color:#00A9F4">  {{'role.roles'|translate}}</h3>
+  </div>
+</div>
+
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 margin-bottom-10">
+          <input nbInput  placeholder="{{'share.search' | translate }}" ngModel (ngModelChange)="filter($event)" [ngModelOptions]="{standalone: true}" />
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 margin-bottom-10">
+          <button class="fullwidth addClient" status="info" nbButton routerLink="/admin/add-role"><nb-icon icon="plus" pack="eva"></nb-icon>{{'role.add-role'|translate}}</button>
+        </div>
+    </div>
+    <ng2-smart-table [settings]="settings"  [source]="source"  (edit)="onEdit($event)" (delete)="onDeleteConfirm($event)" class="clientsTable">
+    </ng2-smart-table>
+
+  </nb-card-body>
+</nb-card>
+

@@ -1,0 +1,23 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+  
+}
+.addClient{
+  width:auto;
+  float: right;
+  background-color: #00A9F4  !important;
+  color:   #ffffff!important;
+  border-color: #00A9F4   !important;
+ }
+ .addClient:hover{
+  background-color: #8F9CB3 !important;
+  color: #fff !important;
+  border-color: #8F9CB3 !important;
+ }
+ .clientsTable{
+  border-radius: 10px;
+ }

@@ -1,0 +1,64 @@
+<div>
+  <div class="modal-header">
+    <h6 *ngIf="!Data"> {{'coach.add-session'|translate}}</h6>
+    <h6 *ngIf="Data"> {{'coach.update-session'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+        <div class="row">
+       
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <label class="label"> {{'coach.session' | translate }}
+            </label>
+            <ng-select placeholder="{{'coach.session' | translate }}" [multiple]="false" formControlName="session_id">
+                <ng-option *ngFor="let row of sessions" [value]="row.id" [disabled]="row.disabled">{{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+            </ng-select>
+            <span class="text-danger" *ngIf="form.get('session_id').invalid && form.get('session_id').dirty">{{'share.required' |translate}}</span>
+          </div>
+
+    
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.price' | translate }}
+              </label>
+              <input formControlName="price" type="number" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('price').invalid && form.get('price').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('price').invalid && form.get('price').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+
+          <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.offline_price' | translate }}
+              </label>
+              <input formControlName="offline_price" type="number" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('offline_price').invalid && form.get('offline_price').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('offline_price').invalid && form.get('offline_price').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div> -->
+         
+        </div>
+
+        <div class="row m-t-10">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" class="btn closeBtn fullwidth" (click)="myModel.hide()"
+                >{{'share.Close'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+      </form>
+    </nb-card-body>
+  </div>
+</div>

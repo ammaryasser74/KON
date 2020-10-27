@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-10 margin-bottom-10">
+    <h3 style="color:#00A9F4">  {{'event.events'|translate}}</h3>
+  </div>
+  <div class="col-lg-2 col-md-2 col-sm-2 margin-bottom-10">
+    <button class="fullwidth addClient" status="info" nbButton (click)="addNew()"><nb-icon icon="plus" pack="eva"></nb-icon>{{'event.add'|translate}}</button>
+  </div>
+</div>
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6 margin-bottom-10">
+          <input nbInput  placeholder="{{'share.search' | translate }}" ngModel (ngModelChange)="filter($event)" [ngModelOptions]="{standalone: true}" />
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 margin-bottom-10">
+          <button class="fullwidth addClient" status="info" nbButton  (click)="Export()">Export<nb-icon icon="download" pack="eva"></nb-icon></button>
+        </div>
+    </div>
+    <ng2-smart-table [settings]="settings"  [source]="source"  (edit)="onEdit($event)" (delete)="onDeleteConfirm($event)" class="clientsTable">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

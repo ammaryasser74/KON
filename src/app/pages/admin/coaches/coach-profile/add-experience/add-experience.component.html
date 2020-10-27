@@ -1,0 +1,112 @@
+<div>
+  <div class="modal-header">
+    <h6 *ngIf="!Data"> {{'coach.add-exprience'|translate}}</h6>
+    <h6 *ngIf="Data"> {{'coach.update-exprience'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+        <div class="row">
+       
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.name_arabic' | translate }}
+              </label>
+              <input formControlName="name_arabic" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('name_arabic').invalid && form.get('name_arabic').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.name_english' | translate }}
+              </label>
+              <input formControlName="name_english" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('name_english').invalid && form.get('name_english').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+         
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.description_arabic' | translate }}
+              </label>
+              <input formControlName="description_arabic" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('description_arabic').invalid && form.get('description_arabic').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('description_arabic').invalid && form.get('description_arabic').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label class="label"> {{'coach.description_english' | translate }}
+              </label>
+              <input formControlName="description_english" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('description_english').invalid && form.get('description_english').dirty}">
+              <span class="has-danger"
+                *ngIf="form.get('description_english').invalid && form.get('description_english').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12"  *ngIf="type=='experiences' || type=='certification'">
+              <div class="form-group" >
+                <label for="inputWebsite" class="label">{{'coach.date_from'|translate}}</label>
+
+                <input nbInput fullWidth  placeholder="{{'coach.date_from'|translate}}" 
+                [ngClass]="{'has-danger':form.get('date_from').invalid && form.get('date_from').dirty}" 
+                formControlName="date_from" type="text" [owlDateTime]="dt2" placeholder="Date Time" [owlDateTimeTrigger]="dt2">
+                <owl-date-time #dt2 [pickerType]="'calendar'"></owl-date-time>
+                <span class="has-danger"
+                *ngIf="form.get('date_from').invalid && form.get('date_from').dirty">{{ 'share.required' | translate }}</span>
+              </div>
+            
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12"  *ngIf="type=='experiences'">
+            <div class="form-group" *ngIf="!isCurrent">
+              <label class="label"> {{'coach.date_to' | translate }}
+              </label>
+              <input formControlName="date_to" [max]="today" type="text" nbInput fullWidth
+                [ngClass]="{'has-danger':form.get('date_to').invalid && form.get('date_to').dirty}" 
+                [owlDateTime]="dt3" placeholder="Date Time" [owlDateTimeTrigger]="dt3">
+                <owl-date-time #dt3 [pickerType]="'calendar'"></owl-date-time>
+              <span class="has-danger"
+                *ngIf="form.get('date_to').invalid && form.get('date_to').dirty">{{ 'share.required' | translate }}</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="row" *ngIf="type=='experiences'">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <nb-checkbox status="success" formControlName="iscurrent" (change)="checkValue($event)">{{'iscurrent'|translate}} </nb-checkbox>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row m-t-10">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" class="btn closeBtn fullwidth" (click)="myModel.hide()"
+                >{{'share.Close'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+    
+
+      </form>
+    </nb-card-body>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+{
+    "share": {
+        "required": "حقل مطلوب",
+        "search": "بحث...",
+        "show": "عرض",
+        "actions": "إجراءات",
+        "delete": "حذف",
+        "edit": "تعديل ",
+        "pageNo": "رقم الصفحة",
+        "total": "مجموع النتائج",
+        "Procedures": "اجراءات",
+        "PageNumber": "صفحة رقم",
+        "TotalResults": "مجموع",
+        "WebSite": "الموقع الاكتروني",
+        "Add": "اضافة",
+        "Close": "اغلاق",
+        "Edit": "تعديل",
+        "upload": "تحميل",
+        "Save": "حفظ",
+        "New": "New"
+    },
+    "city": {
+        "ar_name": "الاسم العربي",
+        "en_name": "الاسم  الانجليزي",
+        "add-city": "اضافة مدينة",
+        "delivery_fee": "مصاريف التوصيل"
+    },
+    "job": {
+        "job":"Jobs",
+        "NameArabic": " Name Arabic",
+        "NameEnglish": "  Name English",
+        "add-job": " Add Job",
+        "update-job": " Update Job",
+        "active":"Active"
+    },
+    "country": {
+        "country":"Countries",
+        "NameArabic": " Name Arabic",
+        "NameEnglish": "  Name English",
+        "add": " Add Country",
+        "update": " Update Country",
+        "active":"Active"
+    },
+    "partner": {
+        "partner":"Partners",
+        "NameArabic": " Name Arabic",
+        "NameEnglish": "  Name English",
+        "add": " Add partner",
+        "update": " Update partner",
+        "active":"Active"
+    },
+    "story": {
+        "story":"stories",
+        "NameArabic": " Name Arabic",
+        "NameEnglish": "  Name English",
+        "add": " Add story",
+        "update": " Update story",
+        "active":"Active",
+        "DescArabic":"Description Arabic",
+        "DescEnglish":" Description English"
+    },
+    "FAQ": {
+        "FAQ":"FAQ",
+        "question_arabic": "Question Arabic",
+        "answer_arabic": "Answer Arabic",
+        "question_english":"question English",
+        "answer_english":"Answer English",
+        "add": " Add FAQ",
+        "update": " Update FAQ",
+        "active":"Active"
+    },
+    "ontactus": {
+        "Name": "Name",
+        "Email": "Email",
+        "Mobile": "Mobile",
+        "Message": "Message",
+        "msg_type": "Message Type"
+    },
+
+    "settings-qoot": {
+        "title": "title",
+        "facebook": "facebook ",
+        "twitter": "twitter",
+        "instagram": "instagram",
+        "phone": "phone",
+        "contactus_email": "contactus email ",
+        "email": " email ",
+        "password": "password",
+        "qoot_percentage_weeklyDeal": "qoot percentage weeklyDeal ",
+        "qoot_percentage_dish": "qoot percentage dish",
+        "auto_reject_time":"auto Reject Time"
+    }
+}

@@ -1,0 +1,137 @@
+<div class="row">
+
+
+  <div class="col-md-12 col-sm-12">
+    <div class="row">
+      <div class=" col-md-4">
+        <nb-card class="p-30 text-center">
+          <h3> <i Class="fa fa-user color-icon"></i></h3>
+          <h6>Reservation</h6>
+          <h6>{{totalData?.reservations}}</h6>
+        </nb-card>
+      </div>
+      <div class=" col-md-4">
+        <nb-card class="p-30 text-center">
+          <h3> <i Class="fa fa-bullhorn ng-star-inserted color-icon "></i></h3>
+          <h6>UpComing Events</h6>
+          <h6>{{totalData?.events}}</h6>
+        </nb-card>
+      </div>
+      <div class="col-md-4">
+        <nb-card class="p-30 text-center">
+          <a routerLink="/admin/reservation-session">
+            <h3> <i Class="fa fa-plus ng-star-inserted color-icon "></i></h3>
+          </a>
+          <h6 routerLink="/admin/reservation-session">New Reservation</h6>
+          <h6 routerLink="/admin/reservation-session">{{totalData?.new_reservations}}</h6>
+        </nb-card>
+      </div>
+      <!-- <div class="col-md-4">
+     
+      <nb-card class="p-30 text-center">
+      
+        <h3> <i Class="fa fa-plus color-icon"></i></h3>
+        <h6>New Reservation</h6>
+        <h6 > {{totalData?.new_reservations}}</h6>
+      <br>
+    </nb-card>
+  
+    </div> -->
+    </div>
+    <div class="row m-b-20">
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+        <div class="form-group">
+
+          <input nbInput fullWidth placeholder="من تاريخ" [(ngModel)]="StartDate" type="text" [owlDateTime]="dt1"
+            placeholder="من تاريخ" [owlDateTimeTrigger]="dt1">
+          <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+        <div class="form-group">
+
+          <input nbInput fullWidth placeholder="الي تاريخ" [(ngModel)]="EndDate" type="text" [owlDateTime]="dt2"
+            placeholder="الي تاريخ" [owlDateTimeTrigger]="dt2">
+          <owl-date-time #dt2 [pickerType]="'calendar'"></owl-date-time>
+        </div>
+      </div>
+
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <button class="fullwidth" status="info" nbButton (click)="changeDate()">
+          <i class="icon-search4"></i>بحث</button></div>
+    </div>
+    <div class="row m-t-15">
+      <div class="col-md-12 col-sm-12">
+        <nb-card>
+          <nb-card-header class="reseve-color">Session</nb-card-header>
+          <nb-list class="user-activity-list">
+            <nb-list-item>
+              <table  border="1"style="width: 100%;text-align: center; " >
+                <thead>
+                  <th style="padding: 10px;">Sesssion</th>
+                  <th>client</th>
+                  <th>Phone</th>
+                  <th>Coach</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Price</th>
+                  <th>Type</th>
+                  <th>Details</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of SessionReservations">
+                    <td>{{row.entity.name_arabic}}</td>
+                    <td>{{row.client.user.first_name}}</td>
+                    <td>{{row.client.user.phone}}</td>
+                    <td style="padding: 10px;">{{row.coach.user.first_name}}</td>
+                    <td>{{row.date}}</td>
+                    <td>{{row.time_from}} :{{row.time_to}} </td>
+
+                    <td>{{row.total_price}}</td>
+                    <td>{{row.type}}</td>
+                    <td><button  status="info" nbButton  (click)="goToReservation(row.id)">Details</button></td>
+                  </tr>
+                  <!-- <tr *ngFor="let row of EventReservations">
+                    <td>{{row.entity.name_arabic}}</td>
+                    <td>{{row.client.user.first_name}}</td>
+                    <td>{{row.client.user.phone}}</td>
+
+                    <td style="padding: 10px;">{{row.coach.user.first_name}}</td>
+                    <td>{{row.date}}</td>
+                    <td>{{row.time_from}} :{{row.time_to}} </td>
+
+                    <td>{{row.total_price}}</td>
+                    <td>{{row.type}}</td>
+                    <td><a>Details</a></td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </nb-list-item>
+          </nb-list>
+        </nb-card>
+      </div>
+      <!-- <div class="col-md-3 col-sm-12">
+            <div class="calendars">
+              <div class="calendar-container">
+                 <nb-calendar  [(date)]="date" (dateChange)="changeDate()"
+                  [dayCellComponent]="dayCellComponent"
+                ></nb-calendar> 
+              </div>
+            </div>
+           </div> -->
+
+    </div>
+  </div>
+  <!-- <div class="col-md-3 col-sm-12">
+      <nb-card class="list-card">
+        <nb-card-header class="reseve-color">New Reservation</nb-card-header>
+          <nb-list>
+             <nb-list-item class="contact" *ngFor="let c of newResrvation">
+              <nb-user [picture]="c.client.user.avater" [name]="c.client.user.first_name" [title]="c.entity.name_arabic" size="large"></nb-user>
+              <span class="caption">{{ c.date}}</span>
+            </nb-list-item>
+          </nb-list>
+      </nb-card>
+    </div> -->
+</div>

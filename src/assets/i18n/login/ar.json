@@ -1,0 +1,15 @@
+{
+
+    "login": {
+        "loginsystem": "تســـجيل الدخول الي نظام",
+        "UsernameorEmail": "اسم المستخدم او البريد الالكتروني",
+        "password": "كلمةالمرور",
+        "passwordConfirm": "تأكيد كلمة المرور",
+        "login": "تســــــجيل الدخول",
+        "copyright": "جميع الحقوق محفوظة لشــركة",
+        "Birdcloud": "start-it.online",
+        "changePassword": "تغيير كلمة المرور",
+        "save": "حفظ",
+        "required": "حقل مطلوب"
+    }
+}

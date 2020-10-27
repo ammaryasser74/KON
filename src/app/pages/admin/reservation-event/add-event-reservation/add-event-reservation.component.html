@@ -1,0 +1,129 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="info" nbSpinnerSize="giant">
+  <div class="modal-header">
+    <button class="btn margin-right-10 m-b-20" routerLink="/admin/reservation-event"
+      *ngIf="languageService.getLanguageOrDefault()=='ar'">
+      <nb-icon pack="ion" class="ion-arrow-right-c ng-star-inserted"></nb-icon>
+    </button>
+    <button class="btn margin-right-10 m-b-20" routerLink="/admin/reservation-event"
+      *ngIf="languageService.getLanguageOrDefault()=='en'">
+      <nb-icon pack="ion" class="ion-arrow-left-c ng-star-inserted"></nb-icon>
+    </button>
+    <h6 *ngIf="!Data">حجز ايفنت</h6>
+    <h6 *ngIf="Data">تعديل ايفنت</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b-12">
+            <ng-select placeholder="Choose client" [multiple]="false" formControlName="client_id">
+              <ng-option *ngFor="let row of Client" [value]="row?.client?.id" [disabled]="row.disabled">
+                {{ row.first_name}} {{ row.last_name}}
+              </ng-option>
+            </ng-select>
+            <span class="has-danger"
+            *ngIf="form.get('client_id').invalid && form.get('client_id').dirty">{{ 'share.required' | translate }}</span>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b-12 m-t-15">
+
+            <ng-select placeholder="Choose event" [multiple]="false" formControlName="entity_id">
+              <ng-option *ngFor="let row of event" [value]="row.id" [disabled]="row.disabled">
+                {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}
+              </ng-option>
+            </ng-select>
+            <span class="has-danger"
+            *ngIf="form.get('entity_id').invalid && form.get('entity_id').dirty">{{ 'share.required' | translate }}</span>
+          </div>
+
+
+          <ng-container class="m-t-15" *ngIf="form.get('entity_id').value">
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 m-t-15">
+              <label for="inputLastName" class="label">{{'event.price'|translate}}</label>
+              <input type="text" formControlName="price" readonly nbInput fullWidth
+                placeholder="{{'event.price'|translate}}">
+            </div>
+
+            <div class="col-lg-4  col-md-4 col-sm-4 col-xs-4 m-t-15">
+              <label for="inputLastName" class="label">No of ticket</label>
+              <input type="number" formControlName="no_of_ticket"
+              [ngClass]="{'has-danger':form.get('no_of_ticket').invalid && form.get('no_of_ticket').dirty}"
+               nbInput fullWidth placeholder="No of ticket">
+            </div>
+            <div class="col-sm-4 m-t-15">
+
+              <label for="inputLastName" class="label">Total</label>
+              <input type="text" readonly formControlName="total" nbInput fullWidth placeholder="Total">
+            </div>
+            <!-- <div class="col-sm-4 m-t-15">
+              <div class="form-group">
+                <label for="inputLastName" class="label">اسم الايفنت</label>
+                <input type="text" formControlName="name_arabic" nbInput fullWidth
+                  placeholder="{{'session.NameEnglish'|translate}}">
+              </div>
+            </div> -->
+            <div class="col-sm-4 m-t-15">
+              <div class="form-group">
+                <label for="inputLastName" class="label">{{'event.date'|translate}}</label>
+                <input type="text" formControlName="date" readonly nbInput fullWidth
+                  placeholder="{{'event.date'|translate}}">
+              </div>
+            </div>
+            <div class="col-sm-4 m-t-15">
+              <div class="form-group">
+                <label for="inputLastName" class="label">{{'event.time_from' | translate }}</label>
+                <input type="text" formControlName="time_from" readonly nbInput fullWidth
+                  placeholder="{{'event.time_from' | translate }}">
+              </div>
+            </div>
+            <div class="col-sm-4 m-t-15">
+              <div class="form-group">
+                <label for="inputLastName" class="label">{{'event.time_to' | translate }}</label>
+                <input type="text" formControlName="time_to" nbInput fullWidth
+                  placeholder="{{'event.time_to' | translate }}">
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12 m-t-15">
+              <img [src]='img' for="my-file-3" for="my-file-3" width="100%" height="125px" *ngIf="img!=null">
+            </div>
+
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12 m-t-15" *ngIf="form.get('type').value=='offline'">
+
+              <input type="text" nbInput fullWidth placeholder=" Specific Location" readonly>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12 m-t-15" *ngIf="form.get('type').value=='online'">
+
+              <input type="text" nbInput fullWidth placeholder="online" readonly>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12" *ngIf="form.get('type').value=='offline'">
+
+              <input type="text" formControlName="address" readonly nbInput fullWidth
+                placeholder="{{'event.address'|translate}}">
+
+            </div>
+
+          </ng-container>
+        </div>
+
+
+        <div class="row m-t-15">
+          <div class="col-sm-4"></div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+            </div>
+          </div>
+
+
+          <div class="col-sm-4"></div>
+
+        </div>
+
+      </form>
+    </nb-card-body>
+  </div>
+</nb-card>

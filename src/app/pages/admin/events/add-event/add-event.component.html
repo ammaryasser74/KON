@@ -1,0 +1,161 @@
+
+  <nb-card>
+    <div class="modal-header">
+      <button class="btn  margin-right-10 m-b-20" routerLink="/admin/events"
+      *ngIf="languageService.getLanguageOrDefault()=='ar'">
+      <nb-icon pack="ion" class="ion-arrow-right-c ng-star-inserted"></nb-icon>
+    </button>
+    <button class="btn margin-right-10 m-b-20" routerLink="/admin/events"
+      *ngIf="languageService.getLanguageOrDefault()=='en'">
+      <nb-icon pack="ion" class="ion-arrow-left-c ng-star-inserted"></nb-icon>
+    </button>
+        <h6 *ngIf="!Data">{{'event.add'|translate}}</h6>
+        <h6 *ngIf="Data">{{'event.update'|translate}}</h6>
+    </div>
+    <div class="row margin-5">
+      <nb-card-body>
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="inputFirstName" class="label">{{'service.NameArabic'|translate}}</label>
+                <input type="text" [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}" formControlName="name_arabic" nbInput fullWidth  placeholder="{{'session.NameArabic'|translate}}">
+                <span class="help-block" *ngIf="form.get('name_arabic').invalid && form.get('name_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="inputLastName" class="label">{{'service.NameEnglish'|translate}}</label>
+                <input type="text" [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}" formControlName="name_english" nbInput fullWidth  placeholder="{{'session.NameEnglish'|translate}}">
+                <span class="help-block" *ngIf="form.get('name_english').invalid && form.get('name_english').dirty">{{ 'share.RequireُEnglish' | translate }}</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <label tabindex="0" class="lbl-img res-img" for="my-file-3">
+                  <a>  
+                  <div class="avatar-img text-center mbmd" style="width: 100%;min-height: 125px;">
+                      <img src='assets/images/logo/upload.png' class="m-t-15" for="my-file-3" width="50%"  *ngIf="img==null">
+                      <img [src]='img' for="my-file-3" for="my-file-3" width="100%" height="125px"
+                       *ngIf="img!=null">
+    
+                        
+                          <input class="input-file" id="my-file-3" type="file" style="display :none" (change)="onSelectFile($event)" class="select-profile-picture">
+                      </div>
+                  </a>
+          </label>
+          </div>
+          </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group" >
+              <label for="inputEmail" class="label">{{'event.DescArabic'|translate}}</label>
+              <textarea type="text" [ngClass]="{'has-danger':form.get('description_arabic').invalid && form.get('description_arabic').dirty}" formControlName="description_arabic" nbInput fullWidth  placeholder="{{'event.DescArabic'|translate}}" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">{{'event.DescEnglish'|translate}}</label>
+              <textarea type="text" [ngClass]="{'has-danger':form.get('description_english').invalid && form.get('description_english').dirty}" formControlName="description_english" nbInput fullWidth  placeholder="{{'event.DescEnglish'|translate}}" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">{{'event.price'|translate}}</label>
+              <input type="number" [ngClass]="{'has-danger':form.get('price').invalid && form.get('price').dirty}" formControlName="price" nbInput fullWidth  placeholder="{{'event.price'|translate}}">
+            </div>
+          </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">{{'event.max_number'|translate}}</label>
+              <input type="number" [ngClass]="{'has-danger':form.get('max_number').invalid && form.get('max_number').dirty}" formControlName="max_number" nbInput fullWidth  placeholder="{{'event.max_number'|translate}}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <label class="label"> {{'event.coach' | translate }}
+            </label>
+            <ng-select placeholder="{{'event.coach' | translate }}" [multiple]="false" formControlName="coach_id">
+              <ng-option *ngFor="let row of coaches" [value]="row.coach.id" [disabled]="row.disabled">
+                {{row.first_name}} {{ row.last_name}}</ng-option>
+            </ng-select>
+            <span class="text-danger"
+              *ngIf="form.get('coach_id').invalid && form.get('coach_id').dirty">{{'share.required' |translate}}</span>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">{{'event.date'|translate}}</label>
+              <input nbInput fullWidth  placeholder="{{'event.date'|translate}}" [ngClass]="{'has-danger':form.get('date').invalid && form.get('date').dirty}" formControlName="date" type="text" [owlDateTime]="dt2" placeholder="Date Time" [owlDateTimeTrigger]="dt2">
+              <owl-date-time #dt2  [pickerType]="'calendar'" ></owl-date-time>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <label for="inputWebsite" class="label">{{'event.time_from' | translate }}</label>
+            <ng-template #popTemplate style="display: inline-block;">
+              <timepicker formControlName="time_from" (ngModelChange)="changed()"></timepicker>
+          </ng-template>
+          <input placeholder="{{'event.time_from' | translate }}" value="{{mytime}}" [outsideClick]="true"
+                 class="form-control" 
+                 [ngClass]="{'has-danger':form.get('time_from').invalid && form.get('time_from').dirty}"
+                 [popover]="popTemplate" placement="bottom"/>
+
+                 <span class="has-danger"
+                 *ngIf="form.get('time_from').invalid && form.get('time_from').dirty">{{ 'share.required' | translate }}</span>
+          </div>
+       
+          
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label for="inputWebsite" class="label">{{'event.time_to' | translate }}</label>
+            <ng-template #popTemplate2 style="display: inline-block;">
+              <timepicker formControlName="time_to" (ngModelChange)="changedto()"></timepicker>
+          </ng-template>
+          <input placeholder="{{'event.time_to' | translate }}" value="{{mytimeTo}}" [outsideClick]="true"
+                 class="form-control" 
+                 [ngClass]="{'has-danger':form.get('time_to').invalid && form.get('time_to').dirty}"
+                 [popover]="popTemplate2" placement="bottom"/>
+
+                 <span class="has-danger"
+                 *ngIf="form.get('time_to').invalid && form.get('time_to').dirty">{{ 'share.required' | translate }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <nb-radio-group formControlName="type" name="type">
+              <nb-radio value="online">
+                online
+              </nb-radio>
+              <nb-radio value="offline">
+                Specific Location
+              </nb-radio>
+            </nb-radio-group>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12" *ngIf="form.get('type').value=='offline'">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">{{'event.address'|translate}}</label>
+              <input type="text" [ngClass]="{'has-danger':form.get('address').invalid && form.get('address').dirty}" formControlName="address" nbInput fullWidth  placeholder="{{'event.address'|translate}}">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3"></div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+            </div>
+          </div>
+        
+
+          <div class="col-sm-3"></div>
+
+        </div>
+        </form>
+      </nb-card-body>
+    </div>
+  </nb-card>
+

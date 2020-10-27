@@ -1,0 +1,91 @@
+<div >
+  <div class="modal-header">
+      <h6 *ngIf="!Data">{{'service.add'|translate}}</h6>
+      <h6 *ngIf="Data">{{'service.update'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="info"
+    nbSpinnerSize="giant">
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label tabindex="0" class="lbl-img res-img" for="my-file-3">
+                <a>  
+                <div class="avatar-img text-center mbmd" style="width: 100%;min-height: 125px;">
+                    <img src='assets/images/logo/upload.png' class="m-t-15" for="my-file-3" width="50%"  *ngIf="img==null">
+                    <img [src]='img' for="my-file-3" for="my-file-3" width="100%" height="125px"
+                     *ngIf="img!=null">
+  
+                        <input class="input-file" id="my-file-3" type="file" style="display :none" accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)" class="select-profile-picture">
+                        <input class="input-file" id="my-file-3" type="file" style="display :none" (change)="onSelectFile($event)" class="select-profile-picture">
+                    </div>
+                </a>
+        </label>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName" class="label">{{'service.NameArabic'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}" formControlName="name_arabic" nbInput fullWidth  placeholder="{{'session.NameArabic'|translate}}">
+            <span class="help-block" *ngIf="form.get('name_arabic').invalid && form.get('name_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName" class="label">{{'service.NameEnglish'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}" formControlName="name_english" nbInput fullWidth  placeholder="{{'session.NameEnglish'|translate}}">
+            <span class="help-block" *ngIf="form.get('name_english').invalid && form.get('name_english').dirty">{{ 'share.RequireُEnglish' | translate }}</span>
+          </div>
+        </div>
+      
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group" >
+            <label for="inputEmail" class="label">{{'service.DescArabic'|translate}}</label>
+            <textarea type="text" [ngClass]="{'has-danger':form.get('description_arabic').invalid && form.get('description_arabic').dirty}" formControlName="description_arabic" nbInput fullWidth  placeholder="{{'session.DescArabic'|translate}}" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputWebsite" class="label">{{'service.DescEnglish'|translate}}</label>
+            <textarea type="text" [ngClass]="{'has-danger':form.get('description_english').invalid && form.get('description_english').dirty}" formControlName="description_english" nbInput fullWidth  placeholder="{{'session.DescEnglish'|translate}}" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+          <label class="label"> {{'service.service' | translate }}
+          </label>
+          <ng-select placeholder="{{'service.service'|translate}}" [multiple]="false" formControlName="parent_id">
+              <ng-option *ngFor="let row of allservices" [value]="row.id" [disabled]="row.disabled">{{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+          </ng-select>
+          <span class="text-danger" *ngIf="form.get('parent_id').invalid && form.get('parent_id').dirty">{{'share.required' |translate}}</span>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12 m-t-20 ">
+          <div class="form-group">
+            <nb-checkbox status="success" formControlName="isactive">{{'service.active'|translate}} </nb-checkbox>
+          </div>
+        </div>
+        
+      </div> -->
+      <div class="row m-t-20" >
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" class="btn closeBtn fullwidth" fullWidth (click)="myModel.hide()" >{{'share.Close'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      
+      </form>
+    </nb-card-body>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div >
+  <div class="modal-header">
+      <h6 *ngIf="!Data">{{'story.add'|translate}}</h6>
+      <h6 *ngIf="Data">{{'story.update'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName" class="label">{{'story.NameArabic'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('title_arabic').invalid && form.get('title_arabic').dirty}" formControlName="title_arabic" nbInput fullWidth  placeholder="{{'story.NameArabic'|translate}}">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName" class="label">{{'story.NameEnglish'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('title_english').invalid && form.get('title_english').dirty}" formControlName="title_english" nbInput fullWidth  placeholder="{{'story.NameEnglish'|translate}}">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group" >
+            <label for="inputEmail" class="label">{{'story.DescArabic'|translate}}</label>
+            <textarea type="text" cols="8"  rows="8" [ngClass]="{'has-danger':form.get('description_arabic').invalid && form.get('description_arabic').dirty}" formControlName="description_arabic" nbInput fullWidth  placeholder="{{'story.DescArabic'|translate}}">
+            </textarea>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputWebsite" class="label">{{'story.DescEnglish'|translate}}</label>
+            <textarea type="text" cols="8"  rows="8" [ngClass]="{'has-danger':form.get('description_english').invalid && form.get('description_english').dirty}" formControlName="description_english" nbInput fullWidth  placeholder="{{'story.DescEnglish'|translate}}">
+            </textarea>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" fullWidth (click)="myModel.hide()" class="closeBtn">{{'share.Close'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      
+      </form>
+    </nb-card-body>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div >
+  <div class="modal-header">
+      <h6 *ngIf="!Data">{{'country.add'|translate}}</h6>
+      <h6 *ngIf="Data">{{'country.update'|translate}}</h6>
+  </div>
+  <div class="row margin-5">
+    <nb-card-body>
+      <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName" class="label">{{'country.NameArabic'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}" formControlName="name_arabic" nbInput fullWidth  placeholder="{{'country.NameArabic'|translate}}">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName" class="label">{{'country.NameEnglish'|translate}}</label>
+            <input type="text" [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}" formControlName="name_english" nbInput fullWidth  placeholder="{{'country.NameEnglish'|translate}}">
+          </div>
+        </div>
+      </div>
+   
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <nb-checkbox status="success" formControlName="isactive">{{'country.active'|translate}} </nb-checkbox>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button type="submit" status="danger" fullWidth (click)="myModel.hide()" nbButton class="closeBtn">{{'share.Close'|translate}}</button>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      
+      </form>
+    </nb-card-body>
+  </div>
+</div>

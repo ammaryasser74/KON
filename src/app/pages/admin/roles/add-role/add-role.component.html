@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-10 margin-bottom-10">
+    <h3 style="color:#00A9F4"> {{'role.roles'|translate}}</h3>
+  </div>
+</div>
+<nb-card>
+  <nb-card-body>
+    <div class="row margin-5">
+      <nb-card-body>
+        <form [formGroup]="form">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName" class="label">{{'role.NameArabic'|translate}}</label>
+              <input type="text" [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}" formControlName="name_arabic" nbInput fullWidth  placeholder="{{'role.NameArabic'|translate}}">
+              <span class="help-block" *ngIf="form.get('name_arabic').invalid && form.get('name_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputLastName" class="label">{{'role.NameEnglish'|translate}}</label>
+              <input type="text" [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}" formControlName="name_english" nbInput fullWidth  placeholder="{{'role.NameEnglish'|translate}}">
+              <span class="help-block" *ngIf="form.get('name_english').invalid && form.get('name_english').dirty">{{ 'share.RequireُEnglish' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group" >
+              <label for="inputEmail" class="label">{{'role.DescArabic'|translate}}</label>
+              <textarea type="text" nbInput fullWidth formControlName="description_arabic" placeholder="{{'role.DescArabic'|translate}}" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">{{'role.DescEnglish'|translate}}</label>
+              <textarea type="text"  formControlName="description_english" nbInput fullWidth  placeholder="{{'role.DescEnglish'|translate}}" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <nb-checkbox status="success" formControlName="isactive">{{'role.active'|translate}} </nb-checkbox>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-container col-md-12 col-lg-12 col-xxxl-12">
+          <nb-accordion multi>
+            <nb-accordion-item *ngFor="let Result of permission">
+              <nb-accordion-item-header>
+                {{languageService.getLanguageOrDefault() == 'ar' ? Result.name_arabic : Result.name_english}}
+              </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <div class="dataTables_wrapper no-footer">
+                  <div class="table-responsive">
+                      <table class="table table-bordered table-framed">
+                          <tbody>
+                            <tr *ngFor="let row of Result.children">
+                                <td class="text-center">{{row.name_arabic}}</td>
+                                <td class="text-center">{{row.name_english}}</td>
+                                <td class="text-center">
+                                  <nb-checkbox  type="checkbox" [checked]="row.active==true"  (change)="permissionadd($event,row.id)"></nb-checkbox>
+                                </td>
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+               </div>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+        </div>
+
+        <div class="row m-t-10">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+        
+        </form>
+      </nb-card-body>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+
+

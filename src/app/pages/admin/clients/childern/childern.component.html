@@ -1,0 +1,218 @@
+<div class="col-md-12 col-lg-12 m-b-10">
+  <button class="btn  margin-right-10 m-b-20" routerLink="/admin/clients" *ngIf="languageService.getLanguageOrDefault()=='ar'"> <nb-icon  pack="ion"  class="ion-arrow-right-c ng-star-inserted"></nb-icon></button>
+  <button class="btn  margin-right-10 m-b-20 " routerLink="/admin/clients" *ngIf="languageService.getLanguageOrDefault()=='en'"> <nb-icon  pack="ion"  class="ion-arrow-left-c ng-star-inserted"></nb-icon></button>
+  <h3 style="color:#00A9F4;
+  display: inline-block;
+  padding: 0.5rem;
+"> {{form.get('first_name').value}} {{form.get('last_name').value}}</h3>
+
+</div>
+<nb-card>
+  <nb-card-body>
+    <nb-tabset fullWidth>
+      <nb-tab tabTitle="{{'coach.basic-info' | translate }}" [nbSpinner]="loading" nbSpinnerStatus="info"
+        nbSpinnerSize="giant">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label class="label"> {{'client.firstname' | translate }}
+                </label>
+                <input formControlName="first_name"
+                  [ngClass]="{'has-danger':form.get('first_name').invalid && form.get('first_name').dirty}" type="text"
+                  nbInput fullWidth>
+                <span class="has-danger"
+                  *ngIf="form.get('first_name').invalid && form.get('first_name').dirty">{{ 'share.required' | translate }}</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label class="label"> {{'client.lastname' | translate }}
+  
+                </label>
+                <input formControlName="last_name" type="text" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('last_name').invalid && form.get('last_name').dirty}">
+                <span class="has-danger"
+                  *ngIf="form.get('last_name').invalid && form.get('last_name').dirty">{{ 'share.required' | translate }}</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label class="label"> {{'client.address' | translate }}
+  
+                </label>
+                <input formControlName="address" type="text" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('address').invalid && form.get('address').dirty}">
+                <span class="has-danger"
+                  *ngIf="form.get('address').invalid && form.get('address').dirty">{{ 'share.required' | translate }}</span>
+              </div>
+            </div>
+  
+          </div>
+  
+          <div class="row">
+  
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label class="label"> {{'client.email' | translate }}
+  
+                </label>
+                <input formControlName="email" type="text" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('email').invalid && form.get('email').dirty}">
+                <span class="has-danger"
+                  *ngIf="form.get('email').invalid && form.get('email').dirty">{{ 'share.required' | translate }}</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label class="label"> {{'client.phone' | translate }}
+  
+                </label>
+                <input formControlName="phone" type="tel" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('phone').invalid && form.get('phone').dirty}">
+                <span class="has-danger" *ngIf="form.get('phone').invalid && form.get('phone').dirty">{{ 'share.required' | translate }}</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12" *ngIf="form.get('id').value==0">
+              <div class="form-group">
+                <label class="label"> {{'client.password' | translate }}
+                </label>
+                <input formControlName="password" type="password" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('password').invalid && form.get('password').dirty}">
+                <span class="has-danger"
+                  *ngIf="form.get('password').invalid && form.get('password').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+              </div>
+            </div>
+  
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <label class="label"> {{'client.country' | translate }}
+              </label>
+              <ng-select placeholder="{{'client.country'|translate}}" [multiple]="false" formControlName="country_id">
+                <ng-option *ngFor="let row of country" [value]="row.id" [disabled]="row.disabled">
+                  {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+              </ng-select>
+              <span class="text-danger"
+                *ngIf="form.get('country_id').invalid && form.get('country_id').dirty">{{'share.required' |translate}}</span>
+            </div>
+  
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <label class="label"> {{'client.city' | translate }}
+              </label>
+              <ng-select placeholder="{{'client.city'|translate}}" [multiple]="false" formControlName="city_id">
+                <ng-option *ngFor="let row of cities" [value]="row.id" [disabled]="row.disabled">
+                  {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+              </ng-select>
+              <span class="text-danger"
+                *ngIf="form.get('city_id').invalid && form.get('city_id').dirty">{{'share.required' |translate}}</span>
+            </div>
+  
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <label class="label"> {{'client.martial_status' | translate }}
+              </label>
+              <ng-select placeholder="{{'client.martial_status'|translate}}" [multiple]="false"
+                formControlName="martial_status">
+                <ng-option *ngFor="let row of martial_status" [value]="row.value" [disabled]="row.disabled">{{row.name}}
+                </ng-option>
+              </ng-select>
+              <span class="text-danger"
+                *ngIf="form.get('martial_status').invalid && form.get('martial_status').dirty">{{'share.required' |translate}}</span>
+            </div>
+          </div>
+  
+          <div class="row m-t-20">
+  
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12" *ngIf="Data">
+              <div class="form-group">
+                <label class="label"> {{'client.age' | translate }}
+                </label>
+                <input formControlName="age" type="number" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('age').invalid && form.get('age').dirty}" readonly>
+                <span class="has-danger"
+                  *ngIf="form.get('age').invalid && form.get('age').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+              </div>
+            </div>
+          
+            
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label class="label"> {{'client.job' | translate }}
+                </label>
+                <input formControlName="job" type="text" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('job').invalid && form.get('job').dirty}">
+                <span class="has-danger"
+                  *ngIf="form.get('job').invalid && form.get('job').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <div class="form-group">
+                <label for="inputWebsite" class="label">{{'client.birthdate'|translate}}</label>
+                <input nbInput fullWidth [max]="today" placeholder="{{'client.birthdate'|translate}}" [ngClass]="{'has-danger':form.get('birthdate').invalid && form.get('birthdate').dirty}" formControlName="birthdate" type="text" [owlDateTime]="dt2" placeholder="Date Time" [owlDateTimeTrigger]="dt2">
+                <owl-date-time #dt2  [pickerType]="'calendar'" ></owl-date-time>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12" *ngIf="showJobName">
+              <div class="form-group">
+                <label class="label"> {{'client.job_name' | translate }}
+                </label>
+                <input formControlName="job_name" type="text" nbInput fullWidth
+                  [ngClass]="{'has-danger':form.get('job_name').invalid && form.get('job_name').dirty}">
+                <span class="has-danger"
+                  *ngIf="form.get('job_name').invalid && form.get('job_name').dirty">{{ 'share.requiredandfourdigit' | translate }}</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+              <nb-radio-group formControlName="gender" name="gender">
+                <nb-radio value="Female">
+                  Female
+                </nb-radio>
+                <nb-radio value="Male">
+                  Male
+                </nb-radio>
+              </nb-radio-group>
+            </div>
+          </div>
+  
+          <div class="row m-t-10">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <button type="submit" fullWidth (click)="save()" class="save">{{'share.Save'|translate}}</button>
+              </div>
+            </div>
+            <!-- <div class="col-sm-4">
+              <div class="form-group">
+                <button type="submit" class="btn btn-danger fullwidth" (click)="myModel.hide()"
+                  >{{'share.Close'|translate}}</button>
+              </div>
+            </div> -->
+            <div class="col-sm-4"></div>
+          </div>
+  
+        </form>
+      </nb-tab>
+      <nb-tab tabTitle=" {{'client.children'|translate}}" [nbSpinner]="loading" nbSpinnerStatus="info"
+        nbSpinnerSize="giant">
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 margin-bottom-10">
+            <button class="fullwidth" status="info" nbButton (click)="addNew()"><nb-icon icon="plus" pack="eva"></nb-icon>{{'client.add-child'|translate}}</button>
+            <!-- <input nbInput class="searchTerm" placeholder="{{'share.search' | translate }}" ngModel (ngModelChange)="filter($event)" [ngModelOptions]="{standalone: true}" /> -->
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-bottom-10">
+            <!-- <button class="margin-right-10" status="info" nbButton (click)="addNew()"><i class="ng-star-inserted"></i>{{'session.add-session'|translate}}</button> -->
+            <input nbInput  placeholder="{{'share.search' | translate }}" ngModel (ngModelChange)="filter($event)" [ngModelOptions]="{standalone: true}" />
+          </div>
+  
+      </div>
+      <ng2-smart-table [settings]="settings"  [source]="source"  (edit)="onEdit($event)" (delete)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+      </nb-tab>
+    </nb-tabset>
+  
+  </nb-card-body>
+</nb-card>
+
