@@ -25,7 +25,10 @@
         "RequireُEnglish":"مطلوب حروف بالانجليزية",
         "Require":"حقل مطلوب",
         "Children":"الاطفال",
-        "show-profile":"الملف الشخصي"
+        "show-profile":"الملف الشخصي",
+        "changePassword":"تغيير كلمة المرور ",
+        "male":"ذكر",
+        "female":"انثى"
     },
     "session":{
         "add-session":"اضافة محاضرة",

@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
@@ -25,7 +25,7 @@ import { takeWhile } from 'rxjs/operators';
   templateUrl: './show-admin-profile.component.html',
   styleUrls: ['./show-admin-profile.component.css']
 })
-export class ShowAdminProfileComponent implements OnInit {
+export class ShowAdminProfileComponent implements OnInit,OnDestroy {
   form: FormGroup;
   roles: any;
   fileData = null;
@@ -38,6 +38,7 @@ export class ShowAdminProfileComponent implements OnInit {
   myRoles: any = [];
   alive: boolean = true;
   loaded: boolean
+  data:any;
   constructor(private formBuilder: FormBuilder,
     private rolesService: RolesService,
     private employeeService: EmployeeService,
@@ -60,23 +61,28 @@ export class ShowAdminProfileComponent implements OnInit {
     this.initForm();
     this.employeeService.GetByID(+this.activeRoute.snapshot.paramMap.get('id')).pipe(takeWhile(() => this.alive)).subscribe(
       res => {
-        this.loaded = true;
         res.Data.address = res.Data.admin.address
         res.Data.firs_tname = res.Data.first_name
         res.Data.last_name = res.Data.last_name
         res.Data.city_id = res.Data.city_id
         res.Data.country_id = res.Data.country_id
         res.Data.UserID = res.Data.user_id
-
-        if (res.Data.avatar != null) {
-          this.img = res.Data.avatar
+        if (res.Data.avater) {
+          this.img = res.Data.avater
         }
-
-        this.form.patchValue(res.Data);
-        res.Data.admin.roles.forEach(element => {
-          this.selected.push(element.id);
-        });
-        this.form.get('roles').setValue(this.selected)
+         this.data=res.Data
+        this.cityService.GetList(res.Data.country_id).pipe(takeWhile(() => this.alive)).subscribe(res => { 
+          this.cities = res.Data 
+          this.loaded = true;
+          console.log(this.data);
+          this.form.patchValue(this.data);
+          this.data.admin.roles.forEach(element => {
+            this.selected.push(element.id);
+          });
+          this.form.get('roles').setValue(this.selected)
+        })
+     
+        
       })
 
   }
@@ -105,6 +111,7 @@ export class ShowAdminProfileComponent implements OnInit {
           { reportProgress: true }
         )
       )
+      .pipe(takeWhile(() => this.alive))
       .subscribe(event => {
         if (event.type === HttpEventType.Response) {
           if (event.body['Success']) {
@@ -130,7 +137,7 @@ export class ShowAdminProfileComponent implements OnInit {
       type: 'admin',
       gender: [],
       avatar: [null],
-      email: [null, Validators.required, Validators.email],
+      email: [null, Validators.required],
       phone: [null, [Validators.required]],
       first_name: [null],
       last_name: [null, Validators.required],
@@ -139,39 +146,36 @@ export class ShowAdminProfileComponent implements OnInit {
       city_id: [null, Validators.required],
       roles: [[]],
     });
-    this.form.get('country_id').valueChanges.subscribe(country => {
-      this.cityService.GetList(country).subscribe(res => { this.cities = res.Data })
-      this.form.get('city_id').setValue('')
-    })
+
+  }
+
+  onChangeCountry(e) {
+    this.form.get('city_id').reset()
+    this.cities = []
+    this.cityService.GetList(e).pipe(takeWhile(() => this.alive)).subscribe(res => { this.cities = res.Data })
   }
   save() {
     if (this.form.valid) {
-      if (this.form.value.id == 0) {
-        this.employeeService.Post(this.form.value).subscribe(
+      this.loaded=false
+        this.employeeService.Update(this.form.value).pipe(takeWhile(() => this.alive)).subscribe(
           res => {
             if (res.Success) {
               this.notifyService.success(res.Message);
+              this.loaded=true;
             } else {
               this.notifyService.danger(res.Message[0]);
+              this.loaded=true;
             }
           }
         );
-      } else if (this.form.value.id > 0 && this.form.dirty) {
-        this.employeeService.Update(this.form.value).subscribe(
-          res => {
-            if (res.Success) {
-              this.notifyService.success(res.Message, "Sucess");
-            } else {
-              this.notifyService.danger(res.Message[0], "Error");
-            }
-          }
-        );
-      }
-    }
+      } 
     else {
       for (let control in this.form.controls) {
         this.form.get(control).markAsDirty();
       }
     }
+  }
+  ngOnDestroy(){
+    this.alive=false
   }
 }

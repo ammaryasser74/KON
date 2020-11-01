@@ -27,3 +27,10 @@
    color: #fff !important;
    border-color: #666666;
    }
+
+   .image{
+       height: 150px;
+       width: 150px;
+       cursor: pointer;
+   }
+  

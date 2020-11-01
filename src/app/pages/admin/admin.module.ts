@@ -79,6 +79,7 @@ import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 
 import {NgxSpinnerModule, NgxSpinnerService} from "ngx-spinner";
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/admin/', '.json');
@@ -155,7 +156,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       AddAvaliableTimeComponent,
       AddSessionCaochesComponent,
       AddSessionReservationComponent,
-
+      LoadingComponent
   ],
   entryComponents:[
     AddSessionComponent,
