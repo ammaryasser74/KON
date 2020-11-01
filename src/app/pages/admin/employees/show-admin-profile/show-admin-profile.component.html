@@ -13,9 +13,9 @@
           <label tabindex="0" class="lbl-img res-img" for="my-file-3">
             <a>
               <div class="avatar-img text-center mbmd" style="width: 100%;min-height: 125px;">
+                <img [src]='img' for="my-file-3" class="m-t-15 rounded-circle image " for="my-file-3" width="100%" height="125px" *ngIf="img">
                 <img src='../../../assets/images/user.png' class="m-t-15 rounded-circle image " for="my-file-3"
                   width="50%" *ngIf="!img">
-                <img [src]='img' for="my-file-3" class="m-t-15 rounded-circle image " for="my-file-3" width="100%" height="125px" *ngIf="img">
                 <input class="input-file" id="my-file-3" type="file" style="display :none"
                   accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)"
                   class="select-profile-picture">
@@ -92,7 +92,7 @@
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
             <label class="label"> {{'employee.country' | translate }}
             </label>
-            <ng-select placeholder="{{'employee.country'|translate}}" [multiple]="false" formControlName="country_id">
+            <ng-select (change)="onChangeCountry($event)" placeholder="{{'employee.country'|translate}}" [multiple]="false" formControlName="country_id">
               <ng-option *ngFor="let row of country" [value]="row.id" [disabled]="row.disabled">
                 {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
             </ng-select>
