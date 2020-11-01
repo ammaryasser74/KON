@@ -22,11 +22,14 @@
         "Save": "Save",
         "New": "New",
         "active": "Active",
-        "RequireArabic":"  Require and letters Arabic",
-        "RequireُEnglish":"  Require and letters English",
-        "Require":" Require",
+        "RequireArabic":"Require and letters Arabic",
+        "RequireُEnglish":"Require and letters English",
+        "Require":"Require",
         "Children":"Children",
-        "show-profile":"Show Profile"
+        "show-profile":"Show Profile",
+        "changePassword":"change password",
+        "male":"Male",
+        "female":"Fenale"
     },
   
     "coach": {
