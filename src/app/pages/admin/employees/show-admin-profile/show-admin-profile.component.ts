@@ -130,7 +130,7 @@ export class ShowAdminProfileComponent implements OnInit {
       type: 'admin',
       gender: [],
       avatar: [null],
-      email: [null, Validators.required, Validators.email],
+      email: [null, Validators.required],
       phone: [null, [Validators.required]],
       first_name: [null],
       last_name: [null, Validators.required],
