@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
@@ -25,7 +25,7 @@ import { takeWhile } from 'rxjs/operators';
   templateUrl: './show-admin-profile.component.html',
   styleUrls: ['./show-admin-profile.component.css']
 })
-export class ShowAdminProfileComponent implements OnInit {
+export class ShowAdminProfileComponent implements OnInit,OnDestroy {
   form: FormGroup;
   roles: any;
   fileData = null;
@@ -174,5 +174,8 @@ export class ShowAdminProfileComponent implements OnInit {
         this.form.get(control).markAsDirty();
       }
     }
+  }
+  ngOnDestroy(){
+    this.alive=false
   }
 }
