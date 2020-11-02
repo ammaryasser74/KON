@@ -88,6 +88,16 @@
         "active":"Active"
 
     },
+    "package":{
+        "add-package":"Add Package",
+        "update":" Update Package",
+        "package":"Package",
+        "NameArabic":"Name Arabic",
+        "NameEnglish":"Name English",
+        "DescArabic":"Description Arabic",
+        "DescEnglish":"Description English"
+    },
+
     "service":{
         "add":"Add service",
         "update":"Update Service",

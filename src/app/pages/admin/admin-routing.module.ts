@@ -17,12 +17,14 @@ import { ReservationEventComponent } from './reservation-event/reservation-event
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { AddEventReservationComponent } from './reservation-event/add-event-reservation/add-event-reservation.component';
 import { AddSessionReservationComponent } from './reservation-session/add-session-reservation/add-session-reservation.component';
+import { PackagesComponent } from './packages/packages.component';
 const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
     children: [
       { path: 'sessions', component:  SessionComponent },
+      { path: 'package', component:  PackagesComponent },
       { path: 'events', component:  EventsComponent },
       { path: 'events/:id', component:  AddEventComponent },
       { path: 'coaches', component:  CoachesComponent },

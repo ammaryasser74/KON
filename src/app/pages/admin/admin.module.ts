@@ -80,6 +80,9 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 
 import {NgxSpinnerModule, NgxSpinnerService} from "ngx-spinner";
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { PackagesComponent } from './packages/packages.component';
+import { AddPackagesComponent } from './packages/add-packages/add-packages.component';
+import { PackagesService } from '../../../services/admin/packages.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/admin/', '.json');
@@ -156,7 +159,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       AddAvaliableTimeComponent,
       AddSessionCaochesComponent,
       AddSessionReservationComponent,
-      LoadingComponent
+      LoadingComponent,
+      //packages
+      PackagesComponent,
+      AddPackagesComponent
   ],
   entryComponents:[
     AddSessionComponent,
@@ -171,6 +177,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddSessionCaochesComponent,
     AddExperienceComponent,
     AddAvaliableTimeComponent,
+    //packages
+    AddPackagesComponent
    
   ],
   providers: [
@@ -191,7 +199,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimeService,
     ReservationService,
     PaymentMethodService,
-    NgxSpinnerService
+    NgxSpinnerService,
+    //packages
+    PackagesService
    
   ],
 
