@@ -41,6 +41,16 @@
         "active":"نشط"
     }
     ,
+    "package":{
+        "add-package":"اضافة باقة",
+        "update":"تعديل باقة",
+        "package":"باقة",
+        "NameArabic":"الاسم العربي",
+        "NameEnglish":"الاسم الانجليزي",
+        "DescArabic":"الوصف بالعربي",
+        "DescEnglish":"الوصف الانجليزي"
+    }
+    ,
     "service":{
         "add":"اضافة خدمة",
         "update":"تعديل خدمة",
