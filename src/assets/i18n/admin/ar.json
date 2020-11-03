@@ -48,7 +48,13 @@
         "NameArabic":"الاسم العربي",
         "NameEnglish":"الاسم الانجليزي",
         "DescArabic":"الوصف بالعربي",
-        "DescEnglish":"الوصف الانجليزي"
+        "DescEnglish":"الوصف الانجليزي",
+        "coach":"المدرب",
+        "sessions-numbers":"عدد الحصص",
+        "session":"الجلسة",
+        "normal-price":"السعر الطبيعي",
+        "package-price":"سعر الباقة"
+
     }
     ,
     "service":{

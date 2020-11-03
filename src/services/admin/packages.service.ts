@@ -10,17 +10,21 @@ export class PackagesService {
     GetList() {
         return this.webApi.get(`${this.controller}/GetList`);
     }
-    Delete(ID){
-        return this.webApi.delete(`${this.controller}/Delete/`+ID); 
+    Delete(ID) {
+        return this.webApi.delete(`${this.controller}/Delete/` + ID);
     }
-  
+
+    showById(id) {
+        return this.webApi.get(`${this.controller}/GetByID/` + id);
+    }
+
     Post(param) {
         return this.webApi.post(`${this.controller}/Post`, param);
     }
     Update(param) {
         return this.webApi.post(`${this.controller}/Update`, param);
     }
-    Days(){
+    Days() {
         return this.webApi.get(`/Day/GetList`);
     }
 

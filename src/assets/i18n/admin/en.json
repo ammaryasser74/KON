@@ -95,7 +95,12 @@
         "NameArabic":"Name Arabic",
         "NameEnglish":"Name English",
         "DescArabic":"Description Arabic",
-        "DescEnglish":"Description English"
+        "DescEnglish":"Description English",
+        "coach":"Coach",
+        "sessions-numbers":"Sessions Numbers",
+        "session":"Session",
+        "normal-price":"Normal Price",
+        "package-price":"Package Price"
     },
 
     "service":{
