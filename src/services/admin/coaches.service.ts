@@ -24,6 +24,11 @@ export class CoachService {
     GetByID(ID){
         return this.webApi.get(`${this.controller}/GetByID/`+ID); 
     }
+    GetSessionsByID(ID){
+        return this.webApi.get(`/CoachSession/GetList/`+ID); 
+    }
+
+
     Login(myparam){
         return this.webApi.post(`${this.controller}/Employee/Login`, myparam);
     }
