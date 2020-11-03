@@ -40,7 +40,7 @@
               <input type="text"
                 [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}"
                 formControlName="name_arabic" nbInput fullWidth placeholder="{{'package.NameArabic'|translate}}">
-              <span class="help-block"
+              <span class="error"
                 *ngIf="form.get('name_arabic').invalid && form.get('name_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
             </div>
           </div>
@@ -50,7 +50,7 @@
               <input type="text"
                 [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}"
                 formControlName="name_english" nbInput fullWidth placeholder="{{'package.NameEnglish'|translate}}">
-              <span class="help-block"
+              <span class="error"
                 *ngIf="form.get('name_english').invalid && form.get('name_english').dirty">{{ 'share.RequireُEnglish' | translate }}</span>
             </div>
           </div>
@@ -63,7 +63,7 @@
                 [ngClass]="{'has-danger':form.get('description_arabic').invalid && form.get('description_arabic').dirty}"
                 formControlName="description_arabic" nbInput fullWidth placeholder="{{'package.DescArabic'|translate}}"
                 rows="4"></textarea>
-                <span class="help-block"
+                <span class="error"
                 *ngIf="form.get('description_arabic').invalid && form.get('description_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
             </div>
           </div>
@@ -86,7 +86,7 @@
               <ng-option *ngFor="let coach of coaches" [value]="coach?.coach?.id" [disabled]="coach.disabled">
                 {{coach.first_name + ' ' + coach.last_name}}</ng-option>
             </ng-select>
-            <span class="text-danger"
+            <span class="error"
               *ngIf="form.get('coach_id').invalid && form.get('coach_id').dirty">{{'share.required' |translate}}</span>
           </div>
 
@@ -97,7 +97,7 @@
               <ng-option *ngFor="let session of sessions" [value]="session.id" [disabled]="session.disabled">
                 {{languageService.getLanguageOrDefault()=='ar' ? session.name_arabic :session.name_english}}</ng-option>
             </ng-select>
-            <span class="text-danger"
+            <span class="error"
               *ngIf="form.get('session_id').invalid && form.get('session_id').dirty">{{'share.required' |translate}}</span>
           </div>
           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
