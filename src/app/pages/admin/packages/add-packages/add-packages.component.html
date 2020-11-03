@@ -131,7 +131,7 @@
             {{'share.Close'|translate}}
           </button>
 
-          <button type="submit" nbButton status="info" class="mr-4" hero (click)="save()">
+          <button type="submit" [disabled]="!form.valid" nbButton status="info" class="mr-4" hero (click)="save()">
             {{'share.Save'|translate}}
           </button>
 
