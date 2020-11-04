@@ -20,7 +20,7 @@
                 {{boxObj.no}}
             </button>
 
-            <button type="submit" nbButton status="info" class="ml-2" hero (click)="onClose(true)">
+            <button type="submit" [class.mr-2]="languageService.getLanguageOrDefault()=='ar'" nbButton status="info" class="ml-2" hero (click)="onClose(true)">
                 {{boxObj.yes}}
             </button>
 
