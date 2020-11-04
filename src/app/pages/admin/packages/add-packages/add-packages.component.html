@@ -104,14 +104,14 @@
             <label for="example-number-input"  [class.float-right]="languageService.getLanguageOrDefault()=='ar'" class="col-form-label">{{'package.sessions-numbers' | translate}}</label>
             <div>
               <input (change)="onChangeSessionNumbers($event)" class="form-control" type="number" min="0" max="20" formControlName="no_of_session"
-                id="example-number-input">
+                id="example-number-input" [class.not-allowed]="!form.get('session_id').value" [attr.disabled]="!form.get('session_id').value ? '' : null">
             </div>
           </div>
 
           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
             <label for="example-number-input"  [class.float-right]="languageService.getLanguageOrDefault()=='ar'" class="col-form-label">{{'package.normal-price' | translate}}</label>
             <div>
-              <input class="form-control" type="number" min="0"  formControlName="normal_price" id="example-number-input"
+              <input class="form-control not-allowed" type="number" min="0"  formControlName="normal_price" id="example-number-input"
                 disabled>
             </div>
           </div>
@@ -131,11 +131,11 @@
             {{'share.Close'|translate}}
           </button>
 
-          <button type="submit" [disabled]="!form.valid" nbButton status="info" class="mr-4" hero (click)="save()">
+          <button type="submit" [class.not-allowed]="!form.valid" [disabled]="!form.valid" nbButton status="info" class="mr-4" hero (click)="save()">
             {{'share.Save'|translate}}
           </button>
 
-        </div>
+        </div> 
 
 
       </form>

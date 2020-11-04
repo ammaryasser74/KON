@@ -79,7 +79,7 @@ export class AddPackagesComponent implements OnInit, OnDestroy {
       description_english: [null, Validators.required],
       coach_id: [null, Validators.required],
       session_id: [null, Validators.required],
-      no_of_session: [0, Validators.required],
+      no_of_session: [null, Validators.required],
       normal_price: [null, Validators.required],
       package_price: [null, Validators.required],
       img: []
