@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       this.error = false
       this.authService.Login(this.form.value).subscribe(res => {
         this.loading = false
-        if (res.Success) {
+        if (res.Success && res.Data.type=="admin") {
           if (res.Data) {
             this.localStorageService.set('accessToken', res.Data.token);
             this.localStorageService.set('currentUser', res.Data);
