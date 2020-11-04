@@ -73,7 +73,7 @@ export class AddPackagesComponent implements OnInit, OnDestroy {
   initform() {
     this.form = this.formBuilder.group({
       id: [0],
-      name_arabic: [null, [Validators.required, Validators.pattern('^[\u0621-\u064A0-9 ]+$')]],
+      name_arabic: [null, [Validators.required, Validators.pattern('^[\u0621-\u064A\u0660-\u0669 ]+$')]],
       name_english: [null, [Validators.required, Validators.pattern('[0-9A-Za-z ]+$')]],
       description_arabic: [null, [Validators.required, Validators.pattern('^[\u0621-\u064A0-9 ]+$')]],
       description_english: [null, Validators.required],
@@ -113,11 +113,30 @@ export class AddPackagesComponent implements OnInit, OnDestroy {
       this.fileData = <File>event.target.files[0];
       this.img = this.fileData
       reader.onload = (event: any) => {
-        this.img = (event.target.result);
-        this.uploadmyImage(this.fileData);
+        if (this.getSizeInMB(event.total) < 1) {
+          this.img = (event.target.result);
+          this.uploadmyImage(this.fileData);
+        }
+        else {
+          this.img="";
+          let errMsg = this.languageService.getLanguageOrDefault() === 'ar' ?
+            'حجم الصورة لا يجب ان يكون اكبر من 1 ميجا بايت' :
+            "uploaded image size is greater than 1 MB";
+
+          let errHeader = this.languageService.getLanguageOrDefault() === 'ar' ? "خطا" : "ERROR"
+          this.toastrService.danger(errMsg, errHeader, {
+            duration: 3000
+          })
+        }
       }
     }
   }
+
+  getSizeInMB(byte) {
+    return byte / 1024 / 1024
+  }
+
+  
   uploadmyImage(Data) {
     const formData = new FormData();
     formData.append('img', Data);
