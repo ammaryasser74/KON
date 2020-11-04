@@ -98,7 +98,7 @@ export class PackagesComponent implements OnInit, OnDestroy {
   onEdit(e) {
     this.addEditaddressModel = this.modalService.show(AddPackagesComponent, {
       initialState:
-        { Data: e.data, }, class: 'modal-xl', backdrop: 'static'
+        { Data: e.data, }, class: 'modal-lg', backdrop: 'static'
     });
     this.addEditaddressModel.content.onClose = (res) => {
       this.getData()
@@ -142,7 +142,7 @@ export class PackagesComponent implements OnInit, OnDestroy {
   addNew() {
     this.addEditaddressModel = this.modalService.show(AddPackagesComponent, {
       initialState:
-        { Data: null, }, class: 'modal-xl', backdrop: 'static'
+        { Data: null, }, class: 'modal-lg', backdrop: 'static'
     });
     this.addEditaddressModel.content.onClose = (res) => {
       this.getData()
