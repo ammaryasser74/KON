@@ -16,11 +16,11 @@
     </div>
     <div class="modal-footer">
         <div class="text-right ">
-            <button type="submit" nbButton status="danger" hero (click)="warningModel.hide()">
+            <button type="submit" class="gray" nbButton status="danger" hero (click)="warningModel.hide()">
                 {{boxObj.no}}
             </button>
 
-            <button type="submit" [class.mr-2]="languageService.getLanguageOrDefault()=='ar'" nbButton status="info" class="ml-2" hero (click)="onClose(true)">
+            <button type="submit" [class.mr-2]="languageService.getLanguageOrDefault()=='ar'" nbButton status="success" class="ml-2" hero (click)="onClose(true)">
                 {{boxObj.yes}}
             </button>
 
