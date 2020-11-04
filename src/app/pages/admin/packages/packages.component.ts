@@ -108,9 +108,7 @@ export class PackagesComponent implements OnInit, OnDestroy {
   onDeleteConfirm(event): void {
     this.warningModel = this.modalService.show(WarningComponent, { class: 'modal-md' });
     this.warningModel.content.boxObj.msg = this.languageService.getLanguageOrDefault() == 'ar' ? 'انت متاكد من الحذف ؟' : 'Are you sure you want to delete this  ?';;
-    this.warningModel.content.onClose = (cancel) => {
-      console.log("this",this);
-      
+    this.warningModel.content.onClose = (cancel) => {      
       if (cancel) {
         this.PackagesService.Delete(event.data.id).pipe(takeWhile(() => this.alive)).subscribe(res => {
           if (res['success']) {
