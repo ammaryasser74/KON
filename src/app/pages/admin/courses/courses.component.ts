@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 import { WarningComponent } from '../../warning/warning.component';
 import { map, takeWhile } from 'rxjs/operators';
 import { AddCoursesComponent } from './add-courses/add-courses.component';
+import { CoursesService } from '../../../../services/admin/courses.service';
 @Component({
   selector: 'ngx-courses',
   templateUrl: './courses.component.html',
@@ -50,8 +51,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
         title: this.languageService.getLanguageOrDefault() == 'ar' ? 'اسم المدرب' : "Coach Name ",
         type: 'string',
       }, 
-      package_price: {
-        title: this.languageService.getLanguageOrDefault() == 'ar' ? 'سعر الباقة ' : " Package Price",
+      price: {
+        title: this.languageService.getLanguageOrDefault() == 'ar' ? 'السعر' : "Price",
         type: 'string',
       }
     },
@@ -69,7 +70,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   constructor(private service: SmartTableData,
     private toastrService: NbToastrService,
     private modalService: BsModalService,
-    private PackagesService: PackagesService,
+    private coursesService: CoursesService,
     private dialogService: NbDialogService,
     private languageService: LanguageService) {
   }
@@ -94,7 +95,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.warningModel.content.boxObj.msg = this.languageService.getLanguageOrDefault() == 'ar' ? 'انت متاكد من الحذف ؟' : 'Are you sure you want to delete this  ?';;
     this.warningModel.content.onClose = (cancel) => {      
       if (cancel) {
-        this.PackagesService.Delete(event.data.id).pipe(takeWhile(() => this.alive)).subscribe(res => {
+        this.coursesService.Delete(event.data.id).pipe(takeWhile(() => this.alive)).subscribe(res => {
           if (res['success']) {
             this.warningModel.hide();
             this.toastrService.success(res['message'], "success");
@@ -109,15 +110,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   }
 
   getData() {
-    this.PackagesService.GetList().pipe(takeWhile(() => this.alive),
-      map(d => {
-        d['data'].forEach(e => {
-          e['session_name_arabic'] = e['session']['name_arabic']
-          e['session_name_english'] = e['session']['name_english']
-        });
-
-        return d
-      })
+    this.coursesService.GetList().pipe(takeWhile(() => this.alive)
     ).subscribe(res => {
       this.source.load(res['data']);
       this.Data = res['data'];;
@@ -139,16 +132,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
       const data = (this.Data.filter(i => {
         let name_arabic = i.name_arabic;
         let name_english = i.name_english;
-        let normal_price = i.normal_price;
+        let price = i.price;
         let coach = i.coach_name;
-        let package_price = i.package_price;
-        let no_of_session = i.no_of_session.toString();
         return `${name_arabic ? name_arabic.toLowerCase() : ''}
         ${name_english ? name_english.toLowerCase() : ''}
-          ${normal_price ? normal_price.toLowerCase() : ''}
+          ${price ? price.toLowerCase() : ''}
           ${coach ? coach.toLowerCase() : ''}
-          ${package_price ? package_price.toLowerCase() : ''}
-          ${no_of_session ? no_of_session.toLowerCase() : ''}
           `.indexOf(filter.toLowerCase()) !== -1;
       }))
       this.source.load(data);

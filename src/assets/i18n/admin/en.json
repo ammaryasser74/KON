@@ -103,6 +103,19 @@
         "package-price":"Package Price"
     },
 
+    "courses":{
+        "add-course":"Add Courses",
+        "update":" Update Courses",
+        "course":"Courses",
+        "NameArabic":"Name Arabic",
+        "NameEnglish":"Name English",
+        "DescArabic":"Description Arabic",
+        "DescEnglish":"Description English",
+        "coach":"Coach",
+        "price":"Price",
+        "active":"Active"
+    },
+
     "service":{
         "add":"Add service",
         "update":"Update Service",

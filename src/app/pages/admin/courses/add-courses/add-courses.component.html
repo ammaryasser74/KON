@@ -1,7 +1,7 @@
 <div>
   <div class="modal-header">
-    <h6 *ngIf="!Data">{{'package.add-package'|translate}}</h6>
-    <h6 *ngIf="Data">{{'package.update'|translate}}</h6>
+    <h6 *ngIf="!Data">{{'courses.add-course'|translate}}</h6>
+    <h6 *ngIf="Data">{{'courses.update'|translate}}</h6>
     <button type="button" [class.closeAr]="languageService.getLanguageOrDefault()=='ar'" (click)="myModel.hide()"
       class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -38,10 +38,10 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputFirstName" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-                class="label">{{'package.NameArabic'|translate}}</label>
+                class="label">{{'courses.NameArabic'|translate}}</label>
               <input type="text"
                 [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}"
-                formControlName="name_arabic" nbInput fullWidth placeholder="{{'package.NameArabic'|translate}}">
+                formControlName="name_arabic" nbInput fullWidth placeholder="{{'courses.NameArabic'|translate}}">
               <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
                 *ngIf="form.get('name_arabic').invalid && form.get('name_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
             </div>
@@ -49,10 +49,10 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputLastName" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-                class="label">{{'package.NameEnglish'|translate}}</label>
+                class="label">{{'courses.NameEnglish'|translate}}</label>
               <input type="text"
                 [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}"
-                formControlName="name_english" nbInput fullWidth placeholder="{{'package.NameEnglish'|translate}}">
+                formControlName="name_english" nbInput fullWidth placeholder="{{'courses.NameEnglish'|translate}}">
               <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
                 *ngIf="form.get('name_english').invalid && form.get('name_english').dirty">{{ 'share.RequireُEnglish' | translate }}</span>
             </div>
@@ -62,10 +62,10 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputEmail" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-                class="label">{{'package.DescArabic'|translate}}</label>
+                class="label">{{'courses.DescArabic'|translate}}</label>
               <textarea type="text"
                 [ngClass]="{'has-danger':form.get('description_arabic').invalid && form.get('description_arabic').dirty}"
-                formControlName="description_arabic" nbInput fullWidth placeholder="{{'package.DescArabic'|translate}}"
+                formControlName="description_arabic" nbInput fullWidth placeholder="{{'courses.DescArabic'|translate}}"
                 rows="4"></textarea>
               <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
                 *ngIf="form.get('description_arabic').invalid && form.get('description_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
@@ -74,11 +74,11 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="inputWebsite" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-                class="label">{{'package.DescEnglish'|translate}}</label>
+                class="label">{{'courses.DescEnglish'|translate}}</label>
               <textarea type="text"
                 [ngClass]="{'has-danger':form.get('description_english').invalid && form.get('description_english').dirty}"
                 formControlName="description_english" nbInput fullWidth
-                placeholder="{{'package.DescEnglish'|translate}}" rows="4"></textarea>
+                placeholder="{{'courses.DescEnglish'|translate}}" rows="4"></textarea>
 
             </div>
           </div>
@@ -86,10 +86,9 @@
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
             <label class="label" [class.float-right]="languageService.getLanguageOrDefault()=='ar'">
-              {{'package.coach' | translate }}
+              {{'courses.coach' | translate }}
             </label>
-            <ng-select (change)="onChangeCoach($event)" placeholder="{{'package.coach'|translate}}" [multiple]="false"
-              formControlName="coach_id">
+            <ng-select placeholder="{{'courses.coach'|translate}}" [multiple]="false" formControlName="coach_id">
               <ng-option *ngFor="let coach of coaches" [value]="coach?.coach?.id" [disabled]="coach.disabled">
                 {{coach.first_name + ' ' + coach.last_name}}</ng-option>
             </ng-select>
@@ -97,51 +96,25 @@
               *ngIf="form.get('coach_id').invalid && form.get('coach_id').dirty">{{'share.required' |translate}}</span>
           </div>
 
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
-            <label class="label" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-              [class.float-right]="languageService.getLanguageOrDefault()=='ar'"> {{'package.session' | translate }}
-            </label>
-            <ng-select placeholder="{{'package.session'|translate}}" [multiple]="false" formControlName="session_id">
-              <ng-option *ngFor="let session of sessions" [value]="session.id" [disabled]="session.disabled">
-                {{languageService.getLanguageOrDefault()=='ar' ? session.name_arabic :session.name_english}}</ng-option>
-            </ng-select>
-            <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-              *ngIf="form.get('session_id').invalid && form.get('session_id').dirty">{{'share.required' |translate}}</span>
-          </div>
-          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12 m-b-12">
             <label for="example-number-input" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-              class="col-form-label">{{'package.sessions-numbers' | translate}}</label>
+              class="col-form-label">{{'courses.price' | translate}}</label>
             <div>
-              <input (change)="onChangeSessionNumbers($event)" class="form-control" type="number" min="0" max="20"
-                formControlName="no_of_session" id="example-number-input"
-                [class.not-allowed]="!form.get('session_id').value"
-                [attr.disabled]="!form.get('session_id').value ? '' : null">
+              <input class="form-control" type="number" min="0" formControlName="price" id="example-number-input">
             </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center">
+            <nb-checkbox formControlName="isactive">{{'courses.active' | translate}}</nb-checkbox>
           </div>
 
-          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
-            <label for="example-number-input" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-              class="col-form-label">{{'package.normal-price' | translate}}</label>
-            <div>
-              <input class="form-control not-allowed" type="number" min="0" formControlName="normal_price"
-                id="example-number-input" disabled>
-            </div>
-          </div>
 
-          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
-            <label for="example-number-input" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
-              class="col-form-label">{{'package.package-price' | translate}}</label>
-            <div>
-              <input class="form-control" type="number" min="0" [max]="form.get('normal_price').value"
-                formControlName="package_price" id="example-number-input">
-            </div>
-          </div>
+
 
         </div>
         <div class="modal-footer">
 
           <button type="submit" [class.not-allowed]="!form.valid" [disabled]="!form.valid" nbButton status="info"
-            class="mr-4" hero (click)="save()">
+            class="mr-4" [class.ml-2]="languageService.getLanguageOrDefault()=='ar'" hero (click)="save()">
             {{'share.Save'|translate}}
           </button>
 

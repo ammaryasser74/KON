@@ -140,7 +140,7 @@
         </div>
         <div class="modal-footer">
 
-          <button type="submit" [class.not-allowed]="!form.valid" [disabled]="!form.valid" nbButton status="info"
+          <button type="submit" [class.ml-2]="languageService.getLanguageOrDefault()=='ar'" [class.not-allowed]="!form.valid" [disabled]="!form.valid" nbButton status="info"
             class="mr-4" hero (click)="save()">
             {{'share.Save'|translate}}
           </button>

@@ -2,13 +2,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
-import { SessionService } from '../../../../../services/admin/session.service';
 import { environment } from '../../../../../environments/environment';
 import { HttpRequest, HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { NbToastrService } from '@nebular/theme';
 import { ServiceService } from '../../../../../services/admin/service.service';
 import { LanguageService } from '../../../../../services/language.service';
-import { PackagesService } from '../../../../../services/admin/packages.service';
 import { pluck, takeWhile } from 'rxjs/operators';
 import { CoachService } from '../../../../../services/admin/coaches.service';
 import { CoursesService } from '../../../../../services/admin/courses.service';
@@ -27,9 +25,7 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
   Data: any;
   loading: boolean = false
   coaches: any[] = [];
-  sessions: any[] = [];
   alive = true;
-  sessionPrice: any;
   constructor(private formBuilder: FormBuilder,
     public myModel: BsModalRef,
     public serviceService: ServiceService,
@@ -55,9 +51,6 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
       //get coaches list 
       this.coachService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => {
         this.coaches = res.Data
-        //get session if coach
-        this.coachService.GetSessionsByID(this.Data.coach_id).pipe(takeWhile(() => this.alive)).subscribe(res => {
-          this.sessions = res['data']
           //get data by package id 
           this.CoursesService.showById(this.Data.id).pipe(takeWhile(() => this.alive), pluck('data')).subscribe(showRes => {
             this.loading = false;
@@ -66,9 +59,6 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
           })
 
         })
-      })
-
-
     }
   }
   initform() {
@@ -79,34 +69,13 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
       description_arabic: [null, [Validators.required, Validators.pattern('^[\u0621-\u064A0-9 ]+$')]],
       description_english: [null, Validators.required],
       coach_id: [null, Validators.required],
-      session_id: [null, Validators.required],
-      no_of_session: [null, Validators.required],
-      normal_price: [null, Validators.required],
-      package_price: [null, Validators.required],
+      isactive: [1, Validators.required],
+      price: [null, Validators.required],
       img: []
     });
 
-    this.form.get('session_id').valueChanges.pipe(takeWhile(() => this.alive)).subscribe(value => {
-      let sessionObject = this.sessions.find(s => s.id === value)
-      if (sessionObject) this.sessionPrice = parseInt(sessionObject.price);
-    })
-  }
 
-  onChangeCoach(e) {
-    this.form.get('session_id').reset();
-    this.sessions = [];
-    this.form.get('no_of_session').reset();
-    this.form.get('normal_price').reset();
-    this.coachService.GetSessionsByID(e).pipe(takeWhile(() => this.alive)).subscribe(res => this.sessions = res['data'])
   }
-
-  onChangeSessionNumbers() {
-    if (this.sessionPrice) {
-      let normalPrice = this.sessionPrice * this.form.get('no_of_session').value;
-      this.form.get('normal_price').setValue(normalPrice);
-    }
-  }
-
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -119,7 +88,7 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
           this.uploadmyImage(this.fileData);
         }
         else {
-          this.img="";
+          this.img = "";
           let errMsg = this.languageService.getLanguageOrDefault() === 'ar' ?
             'حجم الصورة لا يجب ان يكون اكبر من 1 ميجا بايت' :
             "uploaded image size is greater than 1 MB";
@@ -137,7 +106,6 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
     return byte / 1024 / 1024
   }
 
-  
   uploadmyImage(Data) {
     const formData = new FormData();
     formData.append('img', Data);
@@ -182,15 +150,16 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
               this.toastrService.success(res['message'], "success");
               this.myModel.hide();
               this.onClose();
+              this.loading=false;
             } else {
               this.toastrService.danger(res['message'], "Error");
+              this.loading=false;
             }
           }
         );
       }
     }
     else {
-
       for (let control in this.form.controls) {
         this.form.get(control).markAsDirty();
       }

@@ -18,6 +18,7 @@ import { AddEventComponent } from './events/add-event/add-event.component';
 import { AddEventReservationComponent } from './reservation-event/add-event-reservation/add-event-reservation.component';
 import { AddSessionReservationComponent } from './reservation-session/add-session-reservation/add-session-reservation.component';
 import { PackagesComponent } from './packages/packages.component';
+import { CoursesComponent } from './courses/courses.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,6 +26,7 @@ const routes: Routes = [
     children: [
       { path: 'sessions', component:  SessionComponent },
       { path: 'package', component:  PackagesComponent },
+      { path: 'Course', component:  CoursesComponent },
       { path: 'events', component:  EventsComponent },
       { path: 'events/:id', component:  AddEventComponent },
       { path: 'coaches', component:  CoachesComponent },
