@@ -49,23 +49,7 @@ export class PackagesComponent implements OnInit, OnDestroy {
       coach_name: {
         title: this.languageService.getLanguageOrDefault() == 'ar' ? 'اسم المدرب' : "Coach Name ",
         type: 'string',
-      },
-      session_name_arabic: {
-        title: this.languageService.getLanguageOrDefault() == 'ar' ? 'اسم الجلسة باللغة العربية' : "Session Name Arabic ",
-        type: 'string',
-      },
-      session_name_english: {
-        title: this.languageService.getLanguageOrDefault() == 'ar' ? 'اسم الجلسة باللغة الانجليزية' : "Session Name English ",
-        type: 'string',
-      },
-      no_of_session: {
-        title: this.languageService.getLanguageOrDefault() == 'ar' ? 'عدد الحصص' : "Sessions Number  ",
-        type: 'string',
-      },
-      normal_price: {
-        title: this.languageService.getLanguageOrDefault() == 'ar' ? 'السعر الطبيعي ' : "Normal Price",
-        type: 'string',
-      },
+      }, 
       package_price: {
         title: this.languageService.getLanguageOrDefault() == 'ar' ? 'سعر الباقة ' : " Package Price",
         type: 'string',
