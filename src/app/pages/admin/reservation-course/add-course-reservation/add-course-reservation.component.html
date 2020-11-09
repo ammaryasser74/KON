@@ -1,0 +1,53 @@
+<nb-card size="large" style="height: 100%;margin-bottom: 10px;">
+    <app-loading *ngIf="loading"></app-loading>
+    <div [hidden]="loading" >
+        <form [formGroup]="form" autocomplete="off" >
+            <div class="back ">
+                <nb-icon routerLink="/admin/reservation-course"
+                [class.ion-arrow-right-c]="languageService.getLanguageOrDefault()=='ar'"
+                pack="ion" class="ion-arrow-left-c"></nb-icon>
+            </div>
+    
+            <div class="d-flex align-items-center justify-content-center">
+                <h3 class="my-4">Start Reservation</h3>
+            </div>
+            <div class="row   mt-15 mx-auto p-5">
+                <div class="col-md-12">
+                    <ng-select placeholder="Choose Client" [multiple]="false" formControlName="client_id">
+                        <ng-option *ngFor="let client of clients" [value]="client?.client?.id" [disabled]="client.disabled">
+                            {{client.first_name +' ' + client.last_name}}
+                        </ng-option>
+                    </ng-select>
+                    <span class="text-danger"
+                        *ngIf="form.get('client_id').invalid && form.get('client_id').dirty">Required</span>
+                </div>
+    
+    
+    
+                <div class="col-md-12">
+                    <ng-select placeholder="Choose Course" [multiple]="false" formControlName="entity_id">
+                        <ng-option *ngFor="let course of courses" [value]="course.id" [disabled]="course.disabled">
+                            {{languageService.getLanguageOrDefault()=='ar' ? course.name_arabic
+                                                    :course.name_english}}
+                        </ng-option>
+                    </ng-select>
+                    <span class="text-danger"
+                        *ngIf="form.get('entity_id').invalid && form.get('entity_id').dirty">Required</span>
+                </div>
+    
+            </div>
+    
+    
+    
+    
+            <div class="actions d-flex align-items-center justify-content-center mb-2" >
+                <button type="button" nbButton status="info" hero (click)="save()" [disabled]="!form.valid">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+  
+
+
+    </nb-card>

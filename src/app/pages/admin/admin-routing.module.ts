@@ -19,6 +19,8 @@ import { AddEventReservationComponent } from './reservation-event/add-event-rese
 import { AddSessionReservationComponent } from './reservation-session/add-session-reservation/add-session-reservation.component';
 import { PackagesComponent } from './packages/packages.component';
 import { CoursesComponent } from './courses/courses.component';
+import { ReservationCourseComponent } from './reservation-course/reservation-course.component';
+import { AddCourseReservationComponent } from './reservation-course/add-course-reservation/add-course-reservation.component';
 const routes: Routes = [
   {
     path: '',
@@ -40,6 +42,9 @@ const routes: Routes = [
       { path: 'reservation-event', component:  ReservationEventComponent },
       { path: 'reservation-event/:id', component:  AddEventReservationComponent },
       { path: 'reservation-session/:id', component:  AddSessionReservationComponent },
+      //reservation-course
+      { path: 'reservation-course', component:  ReservationCourseComponent },
+      { path: 'reservation-course/:id', component:  AddCourseReservationComponent },
       { path: 'show-profile/:id', component: ShowAdminProfileComponent },
       { path: 'coach-profile/:id', component: CoachProfileComponent },
 
