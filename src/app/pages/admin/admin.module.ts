@@ -86,6 +86,8 @@ import { PackagesService } from '../../../services/admin/packages.service';
 import { CoursesComponent } from './courses/courses.component';
 import { AddCoursesComponent } from './courses/add-courses/add-courses.component';
 import { CoursesService } from '../../../services/admin/courses.service';
+import { ReservationCourseComponent } from './reservation-course/reservation-course.component';
+import { AddCourseReservationComponent } from './reservation-course/add-course-reservation/add-course-reservation.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/admin/', '.json');
@@ -168,7 +170,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddPackagesComponent,
     //courses 
     CoursesComponent,
-    AddCoursesComponent
+    AddCoursesComponent,
+    //reservation course
+    ReservationCourseComponent,
+    AddCourseReservationComponent
   ],
   entryComponents: [
     AddSessionComponent,
@@ -186,7 +191,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     //packages
     AddPackagesComponent,
     //courses
-    AddCoursesComponent
+    AddCoursesComponent,
+    //reservation course
+    AddCourseReservationComponent
   ],
   providers: [
     CityService,
