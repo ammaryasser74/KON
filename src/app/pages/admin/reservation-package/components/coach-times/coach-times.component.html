@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{'reservation.addTime' | translate }}</h5>
+  <button type="button" class="close" (click)="modal.hide()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <ng-container *ngIf="loading">
+    <app-loading></app-loading>
+  </ng-container>
+  <ng-container *ngIf="!loading">
+      <div class="row">
+          <div class="col-lg-1 col-md-1 col-xs-1 " mwlCalendarPreviousView [view]="view"
+              [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+              <i class="fa fa-angle-left pointer" ></i>
+          </div>
+
+          <div class="col-lg-10 col-md-10 col-xs-10  text-center">
+              <span>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+          </div>
+
+          <div class="col-lg-1 col-md-1 col-xs-1 " mwlCalendarNextView [view]="view"
+              [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+              <i class="fa fa-angle-right pointer"></i>
+          </div>
+      </div>
+
+    <mwl-calendar-month-view [viewDate]="viewDate" [events]="times" [refresh]="refresh"
+      (dayClicked)="dayClicked($event.day)">
+    </mwl-calendar-month-view>
+
+    <div  class="availabelTimes">
+      <ng-container *ngIf="avaliableTimes.length">
+        <p  class="title">{{'reservation.avaliableTimes' | translate}}</p>
+        <div *ngFor="let time of avaliableTimes; let i = index" class="mr-3">
+          <label for="time{{i}}">
+            <input id="time{{i}}" [value]='time' type="radio" name="avaliableTimes" [(ngModel)]="selectedTime">
+            {{time.title + ' - ' + time.time_from + ' to '+ time.time_to}}
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+</div>
+
+<div class="modal-footer" *ngIf="!loading">
+  <div class="text-right ">
+
+    <button type="submit" [class.ml-2]="languageService.getLanguageOrDefault()=='ar'" nbButton status="info" class="mr-2" hero (click)="addTime()" [disabled]="!selectedTime">
+        {{'share.Save' | translate}}
+    </button>
+
+    <button type="submit" class="gray" nbButton status="danger" hero (click)="modal.hide()">
+      {{'share.Close' | translate}}    </button>
+
+</div>
+</div>
