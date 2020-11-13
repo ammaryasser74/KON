@@ -185,6 +185,9 @@
     },
     "reservation": {
         "reservation": "الحجوزات",
-        "add": "اضافة حجز"
+        "add": "اضافة حجز",
+        "addTime": "اضافة وقت",
+        "avaliableTimes":"الاوقات المتاحة "
+
     }
 }

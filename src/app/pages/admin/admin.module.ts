@@ -88,6 +88,10 @@ import { AddCoursesComponent } from './courses/add-courses/add-courses.component
 import { CoursesService } from '../../../services/admin/courses.service';
 import { ReservationCourseComponent } from './reservation-course/reservation-course.component';
 import { AddCourseReservationComponent } from './reservation-course/add-course-reservation/add-course-reservation.component';
+import { ReservationPackageComponent } from './reservation-package/reservation-package.component';
+import { AddPackageReservationComponent } from './reservation-package/add-package-reservation/add-package-reservation.component';
+import { ReservationPackageSessionTableComponent } from './reservation-package/components/reservation-package-session-table/reservation-package-session-table.component';
+import { CoachTimesComponent } from './reservation-package/components/coach-times/coach-times.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/admin/', '.json');
@@ -173,7 +177,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddCoursesComponent,
     //reservation course
     ReservationCourseComponent,
-    AddCourseReservationComponent
+    AddCourseReservationComponent,
+     //reservation package
+     ReservationPackageComponent,
+     AddPackageReservationComponent,
+     ReservationPackageSessionTableComponent,
+     CoachTimesComponent
   ],
   entryComponents: [
     AddSessionComponent,
@@ -193,7 +202,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     //courses
     AddCoursesComponent,
     //reservation course
-    AddCourseReservationComponent
+    AddCourseReservationComponent,
+    //reservation package
+    AddPackageReservationComponent,
+    CoachTimesComponent
+
   ],
   providers: [
     CityService,

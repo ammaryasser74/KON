@@ -2,12 +2,14 @@
 import { Injectable } from '@angular/core';
 import { WebApiService } from "../webApi.service";
 import { HttpParams } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class ReservationService {
+    sendDate: Subject<any> = new Subject();
     private controller: string = '/Reservation';
     constructor(private webApi: WebApiService) { }
-    
+
     Post(myparam) {
         return this.webApi.post(`${this.controller}/Post`, myparam);
     }
@@ -17,19 +19,19 @@ export class ReservationService {
     GetList() {
         return this.webApi.get(`${this.controller}/GetList`);
     }
-    GetListTime(date,coach_id) {
+    GetListTime(date, coach_id) {
         return this.webApi.get(`/Time/GetList?date=${date}&coach_id=${coach_id}`);
     }
     UpdateTime(myParam) {
         return this.webApi.post(`${this.controller}/UpdateTime`, myParam);
     }
-    Delete(ID){
-        return this.webApi.delete(`${this.controller}/Delete/`+ID); 
+    Delete(ID) {
+        return this.webApi.delete(`${this.controller}/Delete/` + ID);
     }
-    GetByID(ID){
-        return this.webApi.get(`${this.controller}/GetByID/`+ID); 
+    GetByID(ID) {
+        return this.webApi.get(`${this.controller}/GetByID/` + ID);
     }
-    Login(myparam){
+    Login(myparam) {
         return this.webApi.post(`${this.controller}/Employee/Login`, myparam);
     }
     Time(myParam) {
