@@ -13,7 +13,7 @@ import { ReservationService } from '../../../../../../services/admin/reservation
 })
 export class ReservationPackageSessionTableComponent implements OnInit, OnChanges {
   modal: BsModalRef;
-
+  selectedTimes: any[] = []
 
   settings = {
     mode: 'external',
@@ -79,8 +79,9 @@ export class ReservationPackageSessionTableComponent implements OnInit, OnChange
       newSessions[res.index]['date'] = res['data']['date']
       newSessions[res.index]['timeFrom'] = res['data']['time_from']
       newSessions[res.index]['timeTo'] = res['data']['time_to']
-      this.sessions= JSON.parse(JSON.stringify(newSessions))
-      this.source.load( this.sessions)
+      this.sessions = JSON.parse(JSON.stringify(newSessions))
+      this.reservationService.selectedTimes = this.sessions.filter(d => d.date)
+      this.source.load(this.sessions)
     })
   }
 
@@ -94,7 +95,7 @@ export class ReservationPackageSessionTableComponent implements OnInit, OnChange
     else {
       this.modal = this.modalService.show(CoachTimesComponent, {
         initialState:
-          { coachId: this.coachId, }, class: 'modal-lg', backdrop: 'static'
+          { coachId: this.coachId }, class: 'modal-lg', backdrop: 'static'
       });
       this.modal.content.onClose = (res) => {
         this.reservationService.sendDate.next({ index: index, data: res })
@@ -110,7 +111,9 @@ export class ReservationPackageSessionTableComponent implements OnInit, OnChange
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.reservationService.selectedTimes = changes.sessions.currentValue.filter(d => d.date)
     this.source.load(changes.sessions.currentValue)
+
   }
 
 }

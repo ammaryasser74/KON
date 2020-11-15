@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h5 class="modal-title">{{'reservation.addTime' | translate }}</h5>
-  <button type="button" class="close" (click)="modal.hide()" aria-label="Close">
+  <button [class.left]="languageService.getLanguageOrDefault()=='ar'"  type="button" class="close" (click)="modal.hide()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -33,7 +33,7 @@
     <div  class="availabelTimes">
       <ng-container *ngIf="avaliableTimes.length">
         <p  class="title">{{'reservation.avaliableTimes' | translate}}</p>
-        <div *ngFor="let time of avaliableTimes; let i = index" class="mr-3">
+        <div *ngFor="let time of avaliableTimes; let i = index" class="mr-3" [class.float-right]="languageService.getLanguageOrDefault()=='ar'" >
           <label for="time{{i}}">
             <input id="time{{i}}" [value]='time' type="radio" name="avaliableTimes" [(ngModel)]="selectedTime">
             {{time.title + ' - ' + time.time_from + ' to '+ time.time_to}}

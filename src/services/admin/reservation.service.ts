@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class ReservationService {
     sendDate: Subject<any> = new Subject();
+    selectedTimes: any = [];
     private controller: string = '/Reservation';
     constructor(private webApi: WebApiService) { }
 
