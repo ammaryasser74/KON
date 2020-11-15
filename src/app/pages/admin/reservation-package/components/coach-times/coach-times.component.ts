@@ -6,6 +6,7 @@ import * as moment from 'moment-timezone';
 import { map, takeWhile } from 'rxjs/operators';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { LanguageService } from '../../../../../../services/language.service';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-coach-times',
@@ -25,12 +26,13 @@ export class CoachTimesComponent implements OnInit, OnDestroy {
   onClose;
   constructor(public modal: BsModalRef,
     private reservationService: ReservationService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private toastrService: NbToastrService,
   ) { }
 
   ngOnInit() {
     if (this.modal.content)
-      this.coachId = this.modal.content.coachId
+      this.coachId = this.modal.content.coachId;
     this.getTime(this.coachId)
   }
 
@@ -72,9 +74,24 @@ export class CoachTimesComponent implements OnInit, OnDestroy {
   }
 
   addTime() {
-    this.onClose(this.selectedTime)
-    this.modal.hide();
+    // console.log(this.selectedTime);
+    // console.log(this.reservationService.selectedTimes);
+    if (this.reservationService.selectedTimes.some(d => d.date === this.selectedTime.date && d.timeFrom === this.selectedTime.time_from && d.timeTo === this.selectedTime.time_to)) {
+      this.showErrorMsg()
+    }
+    else {
+      this.onClose(this.selectedTime)
+      this.modal.hide();
+    }
+
   }
+  showErrorMsg() {
+    let errorMsg = this.languageService.getLanguageOrDefault() === 'ar' ?
+      " الوقت موجود بالفعل من افضل اختر وقت اخر  " :
+      "time is already exist befor please select another time ";
+    this.toastrService.danger(errorMsg);
+  }
+
 
   ngOnDestroy() {
     this.alive = false

@@ -87,11 +87,14 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         this.reservationService.sendDate.pipe(takeWhile(() => this.alive)).subscribe(res => {
+            let picked = (({ date, status, time_from, time_to }) => ({ date, status, time_from, time_to }))(res['data']);
             if (this.times.controls[res['index']]) {
-                this.times.controls[res['index']].patchValue(res['data']);
+                picked.status = "pending";
+                this.times.controls[res['index']].patchValue(picked);
             }
             else {
-                this.addTimes(res['data'])
+                picked.status = "pending";
+                this.addTimes(picked)
             }
 
         })
@@ -151,8 +154,6 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
                 this.sessions = JSON.parse(JSON.stringify(copySessions))
                 this.times.patchValue(this.editData.times);
                 this.session_id = this.editData.entity.session_id;
-                console.log(this.form.value);
-
             })
     }
 
@@ -178,6 +179,8 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
             timeTo: null,
             session_id: selectedPackage.session_id
         }
+        this.sessions = [];
+        this.times.reset();
         this.sessions = Array(this.no_of_session).fill(session)
     }
 
