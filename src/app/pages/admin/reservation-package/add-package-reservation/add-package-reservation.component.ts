@@ -117,10 +117,15 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
                             this.editData = JSON.parse(JSON.stringify(showRes['Data']));
                             this.loading = false;
                             this.form.patchValue(showRes['Data']);
+                            this.form.get('client_id').disable();
+                            this.form.get('entity_id').disable();
+
                         }
                         else {
                             this.loading = false;
                             this.toastr.danger(showRes.Message)
+                            this.form.get('client_id').disable();
+                            this.form.get('entity_id').disable();
                         }
                     })
                 })
@@ -203,6 +208,9 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
             this.loading = true;
             this.form.get('entity_type').setValue("Package")
             this.addSessionIdToTimes();
+            this.form.value.client_id = this.editData.client_id;
+            this.form.value.entity_id = this.editData.entity_id;
+            // console.log(this.form.value); 
             this.reservationService.UpdateTime(this.form.value).pipe(takeWhile(() => this.alive))
                 .subscribe(res => {
                     if (res.Success == true) {
