@@ -95,13 +95,13 @@ export class PackagesComponent implements OnInit, OnDestroy {
     this.warningModel.content.onClose = (cancel) => {      
       if (cancel) {
         this.PackagesService.Delete(event.data.id).pipe(takeWhile(() => this.alive)).subscribe(res => {
-          if (res['success']) {
+          if (res['Success']) {
             this.warningModel.hide();
-            this.toastrService.success(res['message'], "success");
+            this.toastrService.success(res['Message'], "sW4Duccess");
             this.getData()
           }
           else {
-            this.toastrService.danger(res['message'], "Error");
+            this.toastrService.danger(res['Message'], "Error");
           }
         })
       }
@@ -111,16 +111,15 @@ export class PackagesComponent implements OnInit, OnDestroy {
   getData() {
     this.PackagesService.GetList().pipe(takeWhile(() => this.alive),
       map(d => {
-        d['data'].forEach(e => {
+        d['Data'].forEach(e => {
           e['session_name_arabic'] = e['session']['name_arabic']
           e['session_name_english'] = e['session']['name_english']
         });
-
         return d
       })
     ).subscribe(res => {
-      this.source.load(res['data']);
-      this.Data = res['data'];;
+      this.source.load(res['Data']);
+      this.Data = res['Data'];;
     });
   }
   addNew() {

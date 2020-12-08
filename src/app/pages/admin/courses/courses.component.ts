@@ -96,13 +96,13 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.warningModel.content.onClose = (cancel) => {      
       if (cancel) {
         this.coursesService.Delete(event.data.id).pipe(takeWhile(() => this.alive)).subscribe(res => {
-          if (res['success']) {
+          if (res['Success']) {
             this.warningModel.hide();
-            this.toastrService.success(res['message'], "success");
+            this.toastrService.success(res['Message'], "success");
             this.getData()
           }
           else {
-            this.toastrService.danger(res['message'], "Error");
+            this.toastrService.danger(res['Message'], "Error");
           }
         })
       }
@@ -112,8 +112,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
   getData() {
     this.coursesService.GetList().pipe(takeWhile(() => this.alive)
     ).subscribe(res => {
-      this.source.load(res['data']);
-      this.Data = res['data'];;
+      this.source.load(res['Data']);
+      this.Data = res['Data'];;
     });
   }
   addNew() {
