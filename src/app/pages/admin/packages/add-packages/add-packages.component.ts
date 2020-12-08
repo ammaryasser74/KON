@@ -58,7 +58,7 @@ export class AddPackagesComponent implements OnInit, OnDestroy {
         this.coachService.GetSessionsByID(this.Data.coach_id).pipe(takeWhile(() => this.alive)).subscribe(res => {
           this.sessions = res['data']
           //get data by package id 
-          this.PackagesService.showById(this.Data.id).pipe(takeWhile(() => this.alive), pluck('data')).subscribe(showRes => {
+          this.PackagesService.showById(this.Data.id).pipe(takeWhile(() => this.alive), pluck('Data')).subscribe(showRes => {
             this.loading = false;
             this.img = showRes['img'] ? environment.api_img + showRes['img'] : null
             this.form.patchValue(showRes);
@@ -163,13 +163,13 @@ export class AddPackagesComponent implements OnInit, OnDestroy {
       if (this.form.value.id == 0) {
         this.PackagesService.Post(this.form.value).subscribe(
           res => {
-            if (res['success']) {
-              this.toastrService.success(res['message'], "success");
+            if (res['Success']) {
+              this.toastrService.success(res['Message'], "Success");
               this.myModel.hide();
               this.loading = false;
               this.onClose();
             } else {
-              this.toastrService.danger(res['message']);
+              this.toastrService.danger(res['Message']);
               this.loading = false
             }
           }
@@ -177,12 +177,12 @@ export class AddPackagesComponent implements OnInit, OnDestroy {
       } else if (this.form.value.id > 0) {
         this.PackagesService.Update(this.form.value).subscribe(
           res => {
-            if (res['success']) {
-              this.toastrService.success(res['message'], "success");
+            if (res['Success']) {
+              this.toastrService.success(res['Message'], "success");
               this.myModel.hide();
               this.onClose();
             } else {
-              this.toastrService.danger(res['message'], "Error");
+              this.toastrService.danger(res['Message'], "Error");
             }
           }
         );

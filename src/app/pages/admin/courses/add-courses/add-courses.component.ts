@@ -52,7 +52,7 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
       this.coachService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => {
         this.coaches = res.Data
           //get data by package id 
-          this.CoursesService.showById(this.Data.id).pipe(takeWhile(() => this.alive), pluck('data')).subscribe(showRes => {
+          this.CoursesService.showById(this.Data.id).pipe(takeWhile(() => this.alive), pluck('Data')).subscribe(showRes => {
             this.loading = false;
             this.img = showRes['img'] ? environment.api_img + showRes['img'] : null
             this.form.patchValue(showRes);
@@ -132,13 +132,13 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
       if (this.form.value.id == 0) {
         this.CoursesService.Post(this.form.value).subscribe(
           res => {
-            if (res['success']) {
-              this.toastrService.success(res['message'], "success");
+            if (res['Success']) {
+              this.toastrService.success(res['Message'], "success");
               this.myModel.hide();
               this.loading = false;
               this.onClose();
             } else {
-              this.toastrService.danger(res['message']);
+              this.toastrService.danger(res['Message']);
               this.loading = false
             }
           }
@@ -146,13 +146,13 @@ export class AddCoursesComponent implements OnInit, OnDestroy {
       } else if (this.form.value.id > 0) {
         this.CoursesService.Update(this.form.value).subscribe(
           res => {
-            if (res['success']) {
-              this.toastrService.success(res['message'], "success");
+            if (res['Success']) {
+              this.toastrService.success(res['Message'], "success");
               this.myModel.hide();
               this.onClose();
               this.loading=false;
             } else {
-              this.toastrService.danger(res['message'], "Error");
+              this.toastrService.danger(res['Message'], "Error");
               this.loading=false;
             }
           }
