@@ -100,7 +100,7 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
         })
         if (!this.editId) {
             this.clientService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => this.clients = res['Data'])
-            this.packageService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => this.packages = res['data'])
+            this.packageService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => this.packages = res['Data'])
             this.initForm();
         }
         else {
@@ -109,7 +109,7 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
             this.clientService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => {
                 this.clients = res['Data']
                 this.packageService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => {
-                    this.packages = res['data']
+                    this.packages = res['Data']
                     this.reservationService.GetByID(this.editId).pipe(takeWhile(() => this.alive)).subscribe(showRes => {
                         if (showRes['Success']) {
                             this.onchangeEntity()
@@ -212,7 +212,7 @@ export class AddPackageReservationComponent implements OnInit, OnDestroy {
             this.form.value.entity_id = this.editData.entity_id;
             // console.log(this.form.value); 
             this.reservationService.UpdateTime(this.form.value).pipe(takeWhile(() => this.alive))
-                .subscribe(res => {
+                .subscribe(res => { 
                     if (res.Success == true) {
                         this.toastr.success(res.Message);
                         this.router.navigate(['/admin/reservation-package'])

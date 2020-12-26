@@ -64,7 +64,7 @@ export class AddCourseReservationComponent implements OnInit, OnDestroy {
     ngOnInit() {        
         if (!this.editId) {
             this.clientService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => this.clients = res['Data'])
-            this.courseService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => this.courses = res['data'])
+            this.courseService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => this.courses = res['Data'])
             this.initForm();
         }
         else {
@@ -73,7 +73,7 @@ export class AddCourseReservationComponent implements OnInit, OnDestroy {
             this.clientService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => {
                 this.clients = res['Data']
                 this.courseService.GetList().pipe(takeWhile(() => this.alive)).subscribe(res => {
-                    this.courses = res['data']
+                    this.courses = res['Data']
                     this.reservationService.GetByID(this.editId).pipe(takeWhile(() => this.alive)).subscribe(showRes => {
                         if (showRes['Success']) {
                             this.loading = false;

@@ -111,13 +111,12 @@ export class ReservationPackageComponent implements OnInit, OnDestroy {
     });
   }
 
-  refactorResponse(response) {
+  refactorResponse(response) {    
     response.Data.PackageReservations.forEach(element => {
       element['coachName'] = element.coach.user.first_name + ' ' + element.coach.user.last_name
       element['clientName'] = element.client.user.first_name + ' ' + element.client.user.last_name,
         element['packageName'] = this.languageService.getLanguageOrDefault() == 'ar' ? element.entity.name_arabic : element.entity.name_english
       element['price'] = element.entity.package_price;
-
     });
     return response.Data.PackageReservations
   }
