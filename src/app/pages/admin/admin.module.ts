@@ -7,7 +7,7 @@ import {
   NbListModule,
   NbRouteTabsetModule,
   NbStepperModule,
-  NbTabsetModule, NbUserModule, NbInputModule, NbToastrService,NbSelectModule, NbTooltipModule, NbPopoverModule, NbRadioModule, NbIconModule, NbCalendarModule, NbSpinnerModule
+  NbTabsetModule, NbUserModule, NbInputModule, NbToastrService, NbSelectModule, NbTooltipModule, NbPopoverModule, NbRadioModule, NbIconModule, NbCalendarModule, NbSpinnerModule
 } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -75,10 +75,23 @@ import { PaymentMethodService } from '../../../services/settings/PaymentMethod.s
 import { EventReservationReportComponent } from '../reports/event-reservation-report/event-reservation-report.component';
 import { AddEventReservationComponent } from './reservation-event/add-event-reservation/add-event-reservation.component';
 import { ReservationEventComponent } from './reservation-event/reservation-event.component';
-import {CalendarModule, DateAdapter} from 'angular-calendar';
-import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-import {NgxSpinnerModule, NgxSpinnerService} from "ngx-spinner";
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { PackagesComponent } from './packages/packages.component';
+import { AddPackagesComponent } from './packages/add-packages/add-packages.component';
+import { PackagesService } from '../../../services/admin/packages.service';
+import { CoursesComponent } from './courses/courses.component';
+import { AddCoursesComponent } from './courses/add-courses/add-courses.component';
+import { CoursesService } from '../../../services/admin/courses.service';
+import { ReservationCourseComponent } from './reservation-course/reservation-course.component';
+import { AddCourseReservationComponent } from './reservation-course/add-course-reservation/add-course-reservation.component';
+import { ReservationPackageComponent } from './reservation-package/reservation-package.component';
+import { AddPackageReservationComponent } from './reservation-package/add-package-reservation/add-package-reservation.component';
+import { ReservationPackageSessionTableComponent } from './reservation-package/components/reservation-package-session-table/reservation-package-session-table.component';
+import { CoachTimesComponent } from './reservation-package/components/coach-times/coach-times.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/admin/', '.json');
@@ -111,7 +124,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
-  }),
+    }),
     PopoverModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -126,38 +139,52 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
 
   declarations: [
-      CoachesComponent,
-      ClientsComponent,
-      ReservationEventComponent,
-      AddEventReservationComponent,
-      SessionComponent,
-      ReservationSessionComponent,
-      EventsComponent,
-      ServicesComponent,
-      AddSessionComponent,
-      RolesComponent,
-      AddRoleComponent,
-      EmployeesComponent,
-      AddEmployeeComponent,
-      AddServiceComponent,
-      FsIconComponent,
-      ShowAdminProfileComponent,
-      ResetPasswordComponent,
-      AddClientComponent,
-      ChildernComponent,
-      AddChildernComponent,
-      ButtonRenderComponent,
-      AddEventComponent,
-      AddCoachComponent,
-      ButtonRenderShowProfileComponent,
-      CoachProfileComponent,
-      AddExperienceComponent,
-      AddAvaliableTimeComponent,
-      AddSessionCaochesComponent,
-      AddSessionReservationComponent,
-
+    CoachesComponent,
+    ClientsComponent,
+    ReservationEventComponent,
+    AddEventReservationComponent,
+    SessionComponent,
+    ReservationSessionComponent,
+    EventsComponent,
+    ServicesComponent,
+    AddSessionComponent,
+    RolesComponent,
+    AddRoleComponent,
+    EmployeesComponent,
+    AddEmployeeComponent,
+    AddServiceComponent,
+    FsIconComponent,
+    ShowAdminProfileComponent,
+    ResetPasswordComponent,
+    AddClientComponent,
+    ChildernComponent,
+    AddChildernComponent,
+    ButtonRenderComponent,
+    AddEventComponent,
+    AddCoachComponent,
+    ButtonRenderShowProfileComponent,
+    CoachProfileComponent,
+    AddExperienceComponent,
+    AddAvaliableTimeComponent,
+    AddSessionCaochesComponent,
+    AddSessionReservationComponent,
+    LoadingComponent,
+    //packages
+    PackagesComponent,
+    AddPackagesComponent,
+    //courses 
+    CoursesComponent,
+    AddCoursesComponent,
+    //reservation course
+    ReservationCourseComponent,
+    AddCourseReservationComponent,
+     //reservation package
+     ReservationPackageComponent,
+     AddPackageReservationComponent,
+     ReservationPackageSessionTableComponent,
+     CoachTimesComponent
   ],
-  entryComponents:[
+  entryComponents: [
     AddSessionComponent,
     AddEmployeeComponent,
     ResetPasswordComponent,
@@ -170,7 +197,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddSessionCaochesComponent,
     AddExperienceComponent,
     AddAvaliableTimeComponent,
-   
+    //packages
+    AddPackagesComponent,
+    //courses
+    AddCoursesComponent,
+    //reservation course
+    AddCourseReservationComponent,
+    //reservation package
+    AddPackageReservationComponent,
+    CoachTimesComponent
+
   ],
   providers: [
     CityService,
@@ -190,8 +226,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimeService,
     ReservationService,
     PaymentMethodService,
-    NgxSpinnerService
-   
+    NgxSpinnerService,
+    //packages
+    PackagesService,
+    //courses 
+    CoursesService
+
   ],
 
 })

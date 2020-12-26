@@ -1,0 +1,46 @@
+.save {
+    background-color: #00a9f4 !important;
+    color: #fff !important;
+    border-radius: 5px !important;
+    border: 1px solid #00a9f4 !important;
+    padding: 0.5rem 4rem !important;
+}
+
+.closeBtn {
+    background-color: #888888 !important;
+    color: #fff !important;
+    border-radius: 5px !important;
+    border: 1px solid #888888 !important;
+    padding: 0.5rem 4rem !important;
+}
+.save:hover {
+    background-color: rgba(51, 103, 255, 0.8) !important;
+    color: #fff !important;
+    border-color: rgba(51, 103, 255, 0.8);
+}
+.closeBtn:hover {
+    background-color: #666666 !important;
+    color: #fff !important;
+    border-color: #666666;
+}
+.image {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+}
+.closeAr {
+    padding: 1rem 1rem;
+    margin: -1rem auto -1rem -1rem;
+}
+.error{
+    color: red;
+    font-weight: bold;
+    padding: 5px;
+}
+.not-allowed{
+    cursor: not-allowed !important;
+}
+.gray{
+    background-image: none !important;
+    background-color: #888888 !important;
+}

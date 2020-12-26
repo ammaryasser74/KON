@@ -1,28 +1,33 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4> {{warn}}</h4>
 
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 > {{warn}}</h4>
-       
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group text-left">
-                        <label>
-                                    {{boxObj.msg}}
-                        </label>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-sm-12 col-xs-12 text-center m-bottom-20">
-                    <button type="button" class="btn btn-success d-inline" aria-label="Close" (click)="onClose(true)">
-                                {{boxObj.yes}}
-                            </button>
-                    <button type="button" class="btn bg-danger no" (click)="warningModel.hide()">
-                        {{boxObj.no}}
-                    </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group text-center font-weight-bold">
+                    <label>
+                        {{boxObj.msg}}
+                    </label>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal-footer">
+        <div class="text-right ">
 
+            <button type="submit" [class.ml-2]="languageService.getLanguageOrDefault()=='ar'" nbButton status="success" class="mr-2" hero (click)="onClose(true)">
+                {{boxObj.yes}}
+            </button>
 
+            <button type="submit" class="gray" nbButton status="danger" hero (click)="warningModel.hide()">
+                {{boxObj.no}}
+            </button>
+
+      
+
+        </div>
+    </div>
+
+</div>

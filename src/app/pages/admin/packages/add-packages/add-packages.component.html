@@ -1,0 +1,159 @@
+<div>
+  <div class="modal-header">
+    <h6 *ngIf="!Data">{{'package.add-package'|translate}}</h6>
+    <h6 *ngIf="Data">{{'package.update'|translate}}</h6>
+    <button type="button" [class.closeAr]="languageService.getLanguageOrDefault()=='ar'" (click)="myModel.hide()"
+      class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <ng-container>
+    <app-loading *ngIf="loading"></app-loading>
+  </ng-container>
+
+  <div class="row margin-5" *ngIf="!loading">
+    <nb-card-body>
+      <form [formGroup]="form">
+        <div class="d-flex align-items-center justify-content-center">
+          <div>
+            <label tabindex="0" class="lbl-img res-img" for="my-file-3">
+              <a>
+                <div class="avatar-img text-center mbmd" style="width: 100%;min-height: 125px;">
+                  <img src='assets/images/logo/upload.png' class="m-t-15 image" for="my-file-3" width="50%"
+                    *ngIf="!img">
+                  <img [src]='img' for="my-file-3" class="image" width="100%" height="125px" *ngIf="img">
+
+                  <input class="input-file" id="my-file-3" type="file" style="display :none"
+                    accept="image/x-png,image/gif,image/jpeg" (change)="onSelectFile($event)"
+                    class="select-profile-picture">
+                  <input class="input-file" id="my-file-3" type="file" style="display :none"
+                    (change)="onSelectFile($event)" class="select-profile-picture">
+                </div>
+              </a>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+                class="label">{{'package.NameArabic'|translate}}</label>
+              <input type="text"
+                [ngClass]="{'has-danger':form.get('name_arabic').invalid && form.get('name_arabic').dirty}"
+                formControlName="name_arabic" nbInput fullWidth placeholder="{{'package.NameArabic'|translate}}">
+              <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+                *ngIf="form.get('name_arabic').invalid && form.get('name_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputLastName" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+                class="label">{{'package.NameEnglish'|translate}}</label>
+              <input type="text"
+                [ngClass]="{'has-danger':form.get('name_english').invalid && form.get('name_english').dirty}"
+                formControlName="name_english" nbInput fullWidth placeholder="{{'package.NameEnglish'|translate}}">
+              <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+                *ngIf="form.get('name_english').invalid && form.get('name_english').dirty">{{ 'share.RequireُEnglish' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputEmail" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+                class="label">{{'package.DescArabic'|translate}}</label>
+              <textarea type="text"
+                [ngClass]="{'has-danger':form.get('description_arabic').invalid && form.get('description_arabic').dirty}"
+                formControlName="description_arabic" nbInput fullWidth placeholder="{{'package.DescArabic'|translate}}"
+                rows="4"></textarea>
+              <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+                *ngIf="form.get('description_arabic').invalid && form.get('description_arabic').dirty">{{ 'share.RequireArabic' | translate }}</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputWebsite" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+                class="label">{{'package.DescEnglish'|translate}}</label>
+              <textarea type="text"
+                [ngClass]="{'has-danger':form.get('description_english').invalid && form.get('description_english').dirty}"
+                formControlName="description_english" nbInput fullWidth
+                placeholder="{{'package.DescEnglish'|translate}}" rows="4"></textarea>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <label class="label" [class.float-right]="languageService.getLanguageOrDefault()=='ar'">
+              {{'package.coach' | translate }}
+            </label>
+            <ng-select (change)="onChangeCoach($event)" placeholder="{{'package.coach'|translate}}" [multiple]="false"
+              formControlName="coach_id">
+              <ng-option *ngFor="let coach of coaches" [value]="coach?.coach?.id" [disabled]="coach.disabled">
+                {{coach.first_name + ' ' + coach.last_name}}</ng-option>
+            </ng-select>
+            <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+              *ngIf="form.get('coach_id').invalid && form.get('coach_id').dirty">{{'share.required' |translate}}</span>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+            <label class="label" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+              [class.float-right]="languageService.getLanguageOrDefault()=='ar'"> {{'package.session' | translate }}
+            </label>
+            <ng-select placeholder="{{'package.session'|translate}}" [multiple]="false" formControlName="session_id">
+              <ng-option *ngFor="let session of sessions" [value]="session.id" [disabled]="session.disabled">
+                {{languageService.getLanguageOrDefault()=='ar' ? session.name_arabic :session.name_english}}</ng-option>
+            </ng-select>
+            <span class="error" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+              *ngIf="form.get('session_id').invalid && form.get('session_id').dirty">{{'share.required' |translate}}</span>
+          </div>
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label for="example-number-input" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+              class="col-form-label">{{'package.sessions-numbers' | translate}}</label>
+            <div>
+              <input (change)="onChangeSessionNumbers($event)" class="form-control" type="number" min="0" max="20"
+                formControlName="no_of_session" id="example-number-input"
+                [class.not-allowed]="!form.get('session_id').value"
+                [attr.disabled]="!form.get('session_id').value ? '' : null">
+            </div>
+          </div>
+
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label for="example-number-input" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+              class="col-form-label">{{'package.normal-price' | translate}}</label>
+            <div>
+              <input class="form-control not-allowed" type="number" min="0" formControlName="normal_price"
+                id="example-number-input" disabled>
+            </div>
+          </div>
+
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 m-b-12">
+            <label for="example-number-input" [class.float-right]="languageService.getLanguageOrDefault()=='ar'"
+              class="col-form-label">{{'package.package-price' | translate}}</label>
+            <div>
+              <input class="form-control" type="number" min="0" [max]="form.get('normal_price').value"
+                formControlName="package_price" id="example-number-input">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+
+          <button type="submit" [class.ml-2]="languageService.getLanguageOrDefault()=='ar'" [class.not-allowed]="!form.valid" [disabled]="!form.valid" nbButton status="info"
+            class="mr-4" hero (click)="save()">
+            {{'share.Save'|translate}}
+          </button>
+
+          <button type="submit" class="gray" nbButton status="danger" hero (click)="myModel.hide()">
+            {{'share.Close'|translate}}
+          </button>
+
+
+        </div>
+
+
+      </form>
+    </nb-card-body>
+  </div>
+</div>

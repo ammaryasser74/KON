@@ -1,0 +1,42 @@
+
+.addClient{
+ width:auto;
+ float: right;
+ background-color: #00A9F4  !important;
+ color:   #ffffff!important;
+ border-color: #00A9F4   !important;
+}
+.addClient:hover{
+ background-color: #8F9CB3 !important;
+ color: #fff !important;
+ border-color: #8F9CB3 !important;
+}
+.clientsTable{
+ border-radius: 10px;
+}
+
+.save{
+ background-color: #00A9F4  !important;
+ color: #fff !important;
+ border-radius: 5px !important;
+ border: 1px solid #00A9F4 !important;
+ padding: 0.5rem 4rem !important;
+}
+
+.closeBtn{
+ background-color: #888888 !important;
+ color: #fff !important;
+ border-radius: 5px !important;
+ border: 1px solid #888888 !important;
+ padding: 0.5rem 4rem !important;
+}
+.save:hover{
+ background-color: rgba(51, 103, 255,0.8) !important;
+ color: #fff !important;
+ border-color: rgba(51, 103, 255,0.8);
+}
+.closeBtn:hover{
+background-color: #666666 !important;
+color: #fff !important;
+border-color: #666666;
+}

@@ -64,7 +64,7 @@ export class AddSessionReservationComponent implements OnInit {
     showLoader: boolean = false;
     clients = [];
     reservation: any;
-
+    coach_id:any;
     constructor(private serviceService: ServiceService,
                 private formBuilder: FormBuilder,
                 private activeRoute: ActivatedRoute,
@@ -247,7 +247,8 @@ export class AddSessionReservationComponent implements OnInit {
 
     getTime() {
         this.loadmycalender = true;
-        this.reservationService.GetListTime(moment(this.viewDate).format('YYYY-MM-DD'), this.form.value.coach_id)
+        if (this.form.value.coach_id) this.coach_id = this.form.value.coach_id
+        this.reservationService.GetListTime(moment(this.viewDate).format('YYYY-MM-DD'), this.coach_id)
             .subscribe(response => {
                 this.loadmycalender = false;
                 response.Data.map(i => i.start = new Date(i.date));

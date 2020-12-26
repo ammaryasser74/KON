@@ -17,28 +17,45 @@ import { ReservationEventComponent } from './reservation-event/reservation-event
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { AddEventReservationComponent } from './reservation-event/add-event-reservation/add-event-reservation.component';
 import { AddSessionReservationComponent } from './reservation-session/add-session-reservation/add-session-reservation.component';
+import { PackagesComponent } from './packages/packages.component';
+import { CoursesComponent } from './courses/courses.component';
+import { ReservationCourseComponent } from './reservation-course/reservation-course.component';
+import { AddCourseReservationComponent } from './reservation-course/add-course-reservation/add-course-reservation.component';
+import { ReservationPackageComponent } from './reservation-package/reservation-package.component';
+import { AddPackageReservationComponent } from './reservation-package/add-package-reservation/add-package-reservation.component';
 const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
     children: [
-      { path: 'sessions', component:  SessionComponent },
-      { path: 'events', component:  EventsComponent },
-      { path: 'events/:id', component:  AddEventComponent },
-      { path: 'coaches', component:  CoachesComponent },
-      { path: 'services', component:  ServicesComponent },
-      { path: 'roles', component:  RolesComponent },
-      { path: 'employees', component:  EmployeesComponent },
-      { path: 'add-role', component:  AddRoleComponent },
-      { path: 'clients', component:  ClientsComponent },
-      { path: 'childern/:id', component:  ChildernComponent },
-      { path: 'reservation-session', component:  ReservationSessionComponent },
-      { path: 'reservation-event', component:  ReservationEventComponent },
-      { path: 'reservation-event/:id', component:  AddEventReservationComponent },
-      { path: 'reservation-session/:id', component:  AddSessionReservationComponent },
+      { path: 'sessions', component: SessionComponent },
+      { path: 'package', component: PackagesComponent },
+      { path: 'Course', component: CoursesComponent },
+      { path: 'events', component: EventsComponent },
+      { path: 'events/:id', component: AddEventComponent },
+      { path: 'coaches', component: CoachesComponent },
+      { path: 'services', component: ServicesComponent },
+      { path: 'roles', component: RolesComponent },
+      { path: 'employees', component: EmployeesComponent },
+      { path: 'add-role', component: AddRoleComponent },
+      { path: 'clients', component: ClientsComponent },
+      { path: 'childern/:id', component: ChildernComponent },
       { path: 'show-profile/:id', component: ShowAdminProfileComponent },
       { path: 'coach-profile/:id', component: CoachProfileComponent },
 
+      //reservation-course
+
+      { path: 'reservation-session', component: ReservationSessionComponent },
+      { path: 'reservation-session/:id', component: AddSessionReservationComponent },
+      //reservation-event
+      { path: 'reservation-event', component: ReservationEventComponent },
+      { path: 'reservation-event/:id', component: AddEventReservationComponent },
+      //reservation-course
+      { path: 'reservation-course', component: ReservationCourseComponent },
+      { path: 'reservation-course/:id', component: AddCourseReservationComponent },
+      //reservation-package
+      { path: 'reservation-package', component: ReservationPackageComponent },
+      { path: 'reservation-package/:id', component: AddPackageReservationComponent },
     ]
   }];
 @NgModule({

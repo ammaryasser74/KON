@@ -16,6 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   form: FormGroup;
   id:number;
   passwordNotMatch:any;
+  loaded:boolean=true;
   constructor(public myModel: BsModalRef,
     private formBuilder: FormBuilder,
     private authService:AuthService,
@@ -38,16 +39,23 @@ export class ResetPasswordComponent implements OnInit {
   save(){
     this.form.value.UserID=this.id;
     if (this.form.valid) {
+      this.loaded=false;
         this.roleService.ChangePassword(this.form.value).subscribe(
           res=>{
              if(res.Success){
                this.toastr.success(res.Message);
+               this.loaded=true;
                if(this.id==this.authService.currentUser.id){
                  this.authService.LogOut();
                }
                this.myModel.hide();
               }
-             else{this.toastr.danger(res.Message);}
+             else{
+              this.loaded=true; 
+              this.toastr.danger(res.Message,"Error",{
+                duration:5000
+              })
+            }
           })
     }
     else {
